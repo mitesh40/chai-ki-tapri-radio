@@ -1,0 +1,2139 @@
+```html
+<!DOCTYPE html>
+<html lang="hi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शर्मा जी की चाय टपरी • 90s & 2000s Retro Radio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amita:wght@700&family=Poppins:wght@400;500;600;700&family=Rozha+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        signboard: ['"Rozha One"', 'serif'],
+                        script: ['"Amita"', 'cursive'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                        mono: ['"Share Tech Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #160a05;
+            color: #faeee1;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .tapri-backdrop {
+            background: 
+                radial-gradient(circle at 50% 18%, rgba(251, 146, 60, 0.22) 0%, rgba(180, 83, 9, 0.08) 45%, rgba(22, 10, 5, 0.96) 80%),
+                repeating-linear-gradient(90deg, rgba(45, 22, 11, 0.4) 0px, rgba(45, 22, 11, 0.4) 2px, transparent 2px, transparent 40px),
+                linear-gradient(180deg, #1b0c06 0%, #2b1309 55%, #160904 100%);
+        }
+
+        .desi-signboard {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            border: 4px solid #78350f;
+            box-shadow: 
+                0 0 0 3px #fde68a,
+                0 10px 25px -5px rgba(0, 0, 0, 0.8),
+                inset 0 0 15px rgba(120, 53, 15, 0.45);
+            position: relative;
+        }
+
+        @keyframes bulbSway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        @keyframes bulbPulse {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(253, 224, 71, 0.9)) brightness(1.1); }
+            50% { filter: drop-shadow(0 0 18px rgba(251, 146, 60, 1)) brightness(1.3); }
+        }
+        .string-bulb {
+            animation: bulbSway 4s ease-in-out infinite, bulbPulse 2.5s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        .string-bulb:nth-child(even) {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes riseSteam {
+            0% { transform: translateY(0) scaleX(1); opacity: 0; }
+            30% { opacity: 0.65; }
+            65% { transform: translateY(-28px) scaleX(1.25) translateX(5px); opacity: 0.4; }
+            100% { transform: translateY(-58px) scaleX(1.5) translateX(-6px); opacity: 0; }
+        }
+        .steam-wisp { animation: riseSteam 3.2s infinite ease-out; }
+        .steam-wisp-2 { animation: riseSteam 3.8s infinite ease-out 1.1s; }
+        .steam-wisp-3 { animation: riseSteam 2.9s infinite ease-out 2.1s; }
+
+        @keyframes spinReel {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .reel-spin {
+            animation: spinReel 3.5s linear infinite;
+            animation-play-state: paused;
+        }
+        .is-playing .reel-spin {
+            animation-play-state: running;
+        }
+
+        @keyframes eqBounce {
+            0%, 100% { height: 20%; }
+            50% { height: 95%; }
+        }
+        .eq-bar {
+            height: 20%;
+            transition: height 0.2s ease;
+        }
+        .is-playing .eq-bar-1 { animation: eqBounce 0.6s ease-in-out infinite; }
+        .is-playing .eq-bar-2 { animation: eqBounce 0.45s ease-in-out infinite 0.15s; }
+        .is-playing .eq-bar-3 { animation: eqBounce 0.75s ease-in-out infinite 0.3s; }
+        .is-playing .eq-bar-4 { animation: eqBounce 0.52s ease-in-out infinite 0.08s; }
+
+        .rain-drop {
+            position: absolute;
+            background: linear-gradient(transparent, rgba(254, 243, 199, 0.45));
+            width: 1.5px;
+            height: 65px;
+            pointer-events: none;
+            animation: rainFall 0.65s linear infinite;
+        }
+        @keyframes rainFall {
+            0% { transform: translateY(-100px) rotate(12deg); opacity: 0; }
+            20% { opacity: 0.75; }
+            100% { transform: translateY(100vh) rotate(12deg); opacity: 0; }
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            background: #432010;
+            height: 7px;
+            border-radius: 999px;
+            border: 1px solid #6e371d;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -5px;
+            background: #f59e0b;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            border: 2px solid #fef3c7;
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: #fbbf24;
+        }
+
+        .radio-deck {
+            background: linear-gradient(180deg, #381a0c 0%, #241007 100%);
+            border: 3px solid #6b3419;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.85),
+                inset 0 2px 4px rgba(253, 224, 71, 0.18);
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #1c0d06; }
+        ::-webkit-scrollbar-thumb { background: #78350f; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b45309; }
+    </style>
+</head>
+<body class="tapri-backdrop min-h-screen flex flex-col justify-between relative selection:bg-amber-500 selection:text-stone-950">
+
+    <!-- ==========================================
+         1. INITIAL ATMOSPHERIC WELCOME OVERLAY
+    =========================================== -->
+    <div id="welcomeOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md transition-opacity duration-300">
+        <div class="max-w-lg w-full radio-deck rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden border-2 border-amber-500/60">
+            <div class="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-amber-400"></div>
+            <div class="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-amber-400"></div>
+            <div class="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-amber-400"></div>
+            <div class="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-amber-400"></div>
+
+            <div class="mx-auto w-24 h-24 mb-4 relative flex items-center justify-center bg-amber-950/80 rounded-full border-2 border-amber-500/40 shadow-inner">
+                <svg class="w-14 h-14 text-amber-400" viewBox="0 0 64 64" fill="none">
+                    <path class="steam-wisp" d="M24 16 C22 10, 28 8, 25 2" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <path class="steam-wisp-2" d="M34 14 C32 8, 38 6, 35 1" stroke="#fde68a" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M16 22 H44 L40 54 C39.5 57 37 59 34 59 H26 C23 59 20.5 57 20 54 L16 22 Z" fill="#d97706" fill-opacity="0.35" stroke="#fbbf24" stroke-width="2.5"/>
+                    <path d="M18 32 H42 L39.5 53 C39 55 37 56.5 34 56.5 H26 C23 56.5 21 55 20.5 53 L18 32 Z" fill="#b45309"/>
+                    <path d="M43 27 H49 C52 27 54 29.5 54 33 C54 36.5 52 39 49 39 H41.5" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="17" y1="27" x2="43" y2="27" stroke="#fef3c7" stroke-width="1.5" stroke-dasharray="3 2"/>
+                </svg>
+            </div>
+
+            <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-medium tracking-wider uppercase mb-2">
+                ☕ Deluxe Salon Style • 24x7 Chai Tapri Radio
+            </div>
+
+            <h1 class="font-signboard text-3xl sm:text-4xl text-amber-300 tracking-wide drop-shadow">
+                शर्मा जी की चाय टपरी
+            </h1>
+            <p class="text-amber-100/80 text-sm sm:text-base mt-2 leading-relaxed">
+                गरमा-गरम अदरक वाली कटिंग चाय, केतली की भाप और 90s–2000s के वो सदाबहार पूरे गाने जो हर टपरी पर बजते हैं।
+            </p>
+
+            <div class="my-5 p-3 rounded-xl bg-black/40 border border-amber-800/60 text-xs text-amber-200/90 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-music text-amber-400 animate-bounce"></i>
+                <span>पहला गाना: <strong>"Chai Ki Tapri Pe"</strong> से शुरुआत होगी!</span>
+            </div>
+
+            <!-- Inline failsafe ensures the overlay ALWAYS closes on click even before external APIs finish loading -->
+            <button id="enterTapriBtn" type="button"
+                onclick="document.getElementById('welcomeOverlay').style.display='none'; if(window.enterTapriNow){window.enterTapriNow();}"
+                class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-500 text-stone-950 font-bold text-base sm:text-lg shadow-[0_0_25px_rgba(245,158,11,0.5)] hover:shadow-[0_0_35px_rgba(251,191,36,0.8)] transform hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-3 cursor-pointer">
+                <i class="fa-solid fa-mug-hot text-xl"></i>
+                <span>टपरी में आएं और गरमा-गरम चाय पिएं</span>
+            </button>
+
+            <p class="text-[11px] text-amber-200/60 mt-3">
+                Tap anywhere on the button above to start the radio immediately
+            </p>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         2. RAIN VISUAL LAYER (Toggled by Rain Mixer)
+    =========================================== -->
+    <div id="rainVisualContainer" class="fixed inset-0 pointer-events-none z-10 overflow-hidden opacity-0 transition-opacity duration-700"></div>
+
+    <!-- ==========================================
+         3. HANGING STRING LIGHTS & TOP BAR
+    =========================================== -->
+    <header class="relative z-20 w-full">
+        <div class="w-full overflow-hidden pointer-events-none select-none h-10 flex justify-around items-start px-2 border-b border-amber-900/30 bg-gradient-to-b from-black/70 to-transparent">
+            <div class="string-bulb flex flex-col items-center">
+                <div class="w-0.5 h-3 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-amber-300"></div>
+            </div>
+            <div class="string-bulb flex flex-col items-center">
+                <div class="w-0.5 h-4 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-orange-400"></div>
+            </div>
+            <div class="string-bulb flex flex-col items-center">
+                <div class="w-0.5 h-2.5 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-amber-200"></div>
+            </div>
+            <div class="string-bulb flex flex-col items-center">
+                <div class="w-0.5 h-4 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-amber-400"></div>
+            </div>
+            <div class="string-bulb hidden sm:flex flex-col items-center">
+                <div class="w-0.5 h-3 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-orange-300"></div>
+            </div>
+            <div class="string-bulb hidden md:flex flex-col items-center">
+                <div class="w-0.5 h-4 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-yellow-300"></div>
+            </div>
+            <div class="string-bulb hidden lg:flex flex-col items-center">
+                <div class="w-0.5 h-2.5 bg-stone-600"></div>
+                <div class="w-3.5 h-4 rounded-full bg-amber-400"></div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 pt-2 pb-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5 bg-stone-950/80 border border-amber-700/50 px-3.5 py-1.5 rounded-full shadow-md">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <span class="text-xs sm:text-sm font-medium text-amber-100">
+                    <strong id="liveListenersCount">148</strong> लोग अभी टपरी पर चाय पी रहे हैं
+                </span>
+                <span class="text-amber-500/60">|</span>
+                <span id="tapriClock" class="font-mono text-xs text-amber-300">04:20 PM</span>
+            </div>
+
+            <div class="desi-signboard px-5 py-1.5 rounded-xl text-center mx-auto lg:mx-0 order-first lg:order-none w-full lg:w-auto">
+                <div class="flex items-center justify-center gap-2">
+                    <span class="text-amber-950 text-xs font-bold tracking-widest uppercase">★ ESTD 1994 ★</span>
+                </div>
+                <h1 class="font-signboard text-2xl sm:text-3xl text-stone-950 tracking-wide leading-tight">
+                    चाय की टपरी • RETRO RADIO
+                </h1>
+                <p class="text-[11px] font-bold text-amber-950 tracking-wider uppercase">
+                    स्पेशल अदरक-इलायची चाय एवं 90s सदाबहार नग्मे
+                </p>
+            </div>
+
+            <div class="flex items-center gap-2 ml-auto lg:ml-0">
+                <button id="playAnthemQuickBtn" type="button" title="Play Chai Ki Tapri Anthem First Song" class="px-3 py-1.5 rounded-xl bg-amber-600/30 hover:bg-amber-500/40 border border-amber-400/50 text-amber-200 text-xs sm:text-sm font-medium transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-mug-saucer text-amber-400"></i>
+                    <span>Tapri Song</span>
+                </button>
+                <button id="toggleTvBtn" type="button" class="px-3 py-1.5 rounded-xl bg-stone-900/90 hover:bg-stone-800 border border-amber-700/50 text-amber-200 text-xs sm:text-sm font-medium transition flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-tv text-amber-400"></i>
+                    <span id="tvBtnLabel">YouTube Video: OFF</span>
+                </button>
+                <button id="openPlaylistModalBtn" type="button" class="px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow cursor-pointer">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <i class="fa-brands fa-youtube text-red-700"></i>
+                    <span>Full Album (105 Songs)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         4. MAIN INTERACTIVE TAPRI WORKSPACE
+    =========================================== -->
+    <main class="relative z-20 flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-2 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+
+        <!-- LEFT COLUMN: CURATED CASSETTE ALBUMS & AMBIENT SOUND MIXER (4 Cols) -->
+        <section class="lg:col-span-4 flex flex-col gap-4 justify-between">
+            
+            <!-- Curated Tapri Albums (Stations) -->
+            <div class="radio-deck rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-amber-800/50">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-compact-disc text-amber-400 animate-spin" style="animation-duration: 8s;"></i>
+                        <h2 class="font-bold text-sm sm:text-base text-amber-200 tracking-wide">
+                            टपरी कैसेट एल्बम (Stations)
+                        </h2>
+                    </div>
+                    <span class="text-[11px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">
+                        5 Cassettes
+                    </span>
+                </div>
+
+                <div id="stationListContainer" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <!-- Ambient Tapri Sound Mixer (Web Audio API Synthesized) -->
+            <div class="radio-deck rounded-2xl p-4">
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-amber-800/50">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-amber-400"></i>
+                        <h2 class="font-bold text-sm sm:text-base text-amber-200">
+                            टपरी का माहौल (Sound Mixer)
+                        </h2>
+                    </div>
+                    <button id="presetCozyBtn" type="button" class="text-[11px] bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-400/40 transition cursor-pointer">
+                        ⚡ Auto Vibe
+                    </button>
+                </div>
+
+                <div class="space-y-3 text-xs sm:text-sm">
+                    <div class="bg-black/30 p-2.5 rounded-xl border border-amber-900/40">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label for="kettleSlider" class="flex items-center gap-2 font-medium text-amber-100 cursor-pointer">
+                                <span class="text-base">☕</span>
+                                <span>चाय उबलने & केतली की भाप</span>
+                            </label>
+                            <span id="kettleVal" class="font-mono text-xs text-amber-400">35%</span>
+                        </div>
+                        <input id="kettleSlider" type="range" min="0" max="100" value="35" class="w-full">
+                    </div>
+
+                    <div class="bg-black/30 p-2.5 rounded-xl border border-amber-900/40">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label for="clinkSlider" class="flex items-center gap-2 font-medium text-amber-100 cursor-pointer">
+                                <span class="text-base">🥄</span>
+                                <span>गिलास खनक & टपरी चर्चा</span>
+                            </label>
+                            <span id="clinkVal" class="font-mono text-xs text-amber-400">25%</span>
+                        </div>
+                        <input id="clinkSlider" type="range" min="0" max="100" value="25" class="w-full">
+                    </div>
+
+                    <div class="bg-black/30 p-2.5 rounded-xl border border-amber-900/40">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label for="rainSlider" class="flex items-center gap-2 font-medium text-amber-100 cursor-pointer">
+                                <span class="text-base">🌧️</span>
+                                <span>बाहर रिमझिम बारिश</span>
+                            </label>
+                            <span id="rainVal" class="font-mono text-xs text-amber-400">0%</span>
+                        </div>
+                        <input id="rainSlider" type="range" min="0" max="100" value="0" class="w-full">
+                    </div>
+
+                    <div class="bg-black/30 p-2.5 rounded-xl border border-amber-900/40">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label for="crackleSlider" class="flex items-center gap-2 font-medium text-amber-100 cursor-pointer">
+                                <span class="text-base">📻</span>
+                                <span>पुराना रेडियो टेप क्रैकल</span>
+                            </label>
+                            <span id="crackleVal" class="font-mono text-xs text-amber-400">15%</span>
+                        </div>
+                        <input id="crackleSlider" type="range" min="0" max="100" value="15" class="w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CENTER/RIGHT COLUMN: VISUAL TAPRI COUNTER SCENE & RETRO CASSETTE PLAYER (8 Cols) -->
+        <section class="lg:col-span-8 flex flex-col gap-4 justify-between">
+            
+            <!-- Animated Chai Tapri Counter Scene + Retro TV Container -->
+            <div class="radio-deck rounded-3xl p-4 sm:p-6 relative overflow-hidden flex-1 flex flex-col justify-between min-h-[340px]">
+                
+                <!-- Background Decorative Tapri Wall Posters / Signboards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-start relative z-10">
+                    <!-- Wall Sign 1: Rate List -->
+                    <div class="bg-amber-950/80 border-2 border-amber-600/60 rounded-xl p-2.5 shadow-lg transform -rotate-1">
+                        <div class="text-[11px] font-bold text-amber-300 border-b border-amber-700/60 pb-1 mb-1.5 flex items-center justify-between">
+                            <span>📋 टपरी रेट लिस्ट</span>
+                            <span>1998</span>
+                        </div>
+                        <ul class="text-[11px] space-y-1 text-amber-100/90 font-mono">
+                            <li class="flex justify-between"><span>☕ कटिंग अदरक चाय</span><span>₹5/-</span></li>
+                            <li class="flex justify-between"><span>🍪 बन मक्खन / पारले-जी</span><span>₹4/-</span></li>
+                            <li class="flex justify-between"><span>🥟 गरम समोसा / पकोड़े</span><span>₹6/-</span></li>
+                            <li class="flex justify-between text-amber-300"><span>🎵 कुमार सानू का गाना</span><span>मुफ़्त!</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Wall Sign 2: Tapri Charcha Quote Bubble -->
+                    <div class="sm:col-span-2 bg-gradient-to-br from-amber-950/90 to-stone-900/90 border-2 border-amber-500/50 rounded-2xl p-3 shadow-lg relative">
+                        <div class="flex items-center justify-between text-xs text-amber-400 mb-1">
+                            <span class="font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-comments"></i> टपरी पर चर्चा (Tapri Quotes)
+                            </span>
+                            <button id="nextQuoteBtn" type="button" class="text-[11px] bg-amber-500/20 hover:bg-amber-500/40 text-amber-200 px-2 py-0.5 rounded-lg border border-amber-500/40 transition cursor-pointer">
+                                अगली बात <i class="fa-solid fa-rotate-right ml-1"></i>
+                            </button>
+                        </div>
+                        <p id="tapriQuoteText" class="text-sm sm:text-base font-medium text-amber-100 italic leading-snug min-h-[2.5rem] flex items-center">
+                            "भैया एक कड़क अदरक वाली कटिंग लगाना, चीनी थोड़ी कम और इलायची कूट के!"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Centerpiece: Illustrated Tapri Counter + Retro CRT TV Screen -->
+                <div class="my-3 relative z-10 flex flex-col md:flex-row items-center justify-around gap-6 py-2">
+                    
+                    <!-- Interactive Brass Kettle & Cutting Chai SVG Scene -->
+                    <div class="flex items-end justify-center gap-5 sm:gap-8 relative">
+                        
+                        <!-- Steaming Brass Kettle on Stove -->
+                        <div class="flex flex-col items-center group cursor-pointer" id="pourChaiTrigger" title="Click to pour fresh गरमा-गरम Chai!">
+                            <svg class="w-28 h-28 sm:w-32 sm:h-32 overflow-visible" viewBox="0 0 120 120" fill="none">
+                                <defs>
+                                    <linearGradient id="kettleGrad" x1="30" y1="45" x2="95" y2="100" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#fde68a"/>
+                                        <stop offset="45%" stop-color="#f59e0b"/>
+                                        <stop offset="100%" stop-color="#92400e"/>
+                                    </linearGradient>
+                                </defs>
+                                <path class="steam-wisp" d="M22 42 C15 28, 28 18, 20 5" stroke="#fde68a" stroke-width="3" stroke-linecap="round"/>
+                                <path class="steam-wisp-2" d="M14 48 C8 34, 18 22, 12 10" stroke="#fef3c7" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M44 45 C44 20, 86 20, 86 45" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+                                <path d="M54 25 H76" stroke="#1c1917" stroke-width="8" stroke-linecap="round"/>
+                                <ellipse cx="65" cy="46" rx="22" ry="6" fill="#f59e0b" stroke="#78350f" stroke-width="2.5"/>
+                                <circle cx="65" cy="39" r="5" fill="#92400e"/>
+                                <path d="M38 66 L18 46 L24 42 L43 56" fill="#d97706" stroke="#78350f" stroke-width="2.5" stroke-linejoin="round"/>
+                                <ellipse cx="65" cy="72" rx="32" ry="26" fill="url(#kettleGrad)" stroke="#78350f" stroke-width="3"/>
+                                <path d="M46 104 C50 96, 55 104, 60 95 C65 104, 70 96, 75 104 C78 98, 82 104, 84 104" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+                                <rect x="38" y="104" width="54" height="6" rx="3" fill="#44403c"/>
+                            </svg>
+                            <span class="text-[11px] bg-amber-500/20 group-hover:bg-amber-500 group-hover:text-stone-950 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/40 transition font-medium mt-1">
+                                ☕ केतली से चाय ढालें
+                            </span>
+                        </div>
+
+                        <!-- Classic Cutting Chai Glass -->
+                        <div class="flex flex-col items-center">
+                            <svg class="w-20 h-24 sm:w-24 sm:h-28 overflow-visible" viewBox="0 0 80 100" fill="none">
+                                <path class="steam-wisp-3" d="M35 20 C30 10, 42 5, 36 -4" stroke="#fde68a" stroke-width="2.2" stroke-linecap="round"/>
+                                <path class="steam-wisp" d="M47 22 C43 12, 52 6, 46 -2" stroke="#fef3c7" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M20 26 H60 L53 84 C52.5 88 49 90 45 90 H35 C31 90 27.5 88 27 84 L20 26 Z" fill="#fef3c7" fill-opacity="0.18" stroke="#fbbf24" stroke-width="2.5"/>
+                                <path d="M22.5 42 H57.5 L52.5 83 C52 86 49 87.5 45 87.5 H35 C31 87.5 28 86 27.5 83 L22.5 42 Z" fill="#c2410c"/>
+                                <ellipse cx="40" cy="42" rx="17.5" ry="3.5" fill="#f59e0b"/>
+                                <line x1="32" y1="45" x2="34" y2="85" stroke="#fde68a" stroke-opacity="0.35" stroke-width="1.5"/>
+                                <line x1="40" y1="45" x2="40" y2="85" stroke="#fde68a" stroke-opacity="0.35" stroke-width="1.5"/>
+                                <line x1="48" y1="45" x2="46" y2="85" stroke="#fde68a" stroke-opacity="0.35" stroke-width="1.5"/>
+                            </svg>
+                            <span id="chaiSipCounter" class="text-[11px] text-amber-300/90 font-medium mt-1">
+                                गरमा-गरम कटिंग तैयार है!
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Retro Tapri TV Screen (Deluxe Salon Style: Visualizer Default + Optional YouTube Video Toggle) -->
+                    <div id="tvContainerWrapper" class="transition-all duration-300 w-full md:w-80 lg:w-88">
+                        <div class="bg-stone-900 border-4 border-amber-800 rounded-2xl p-2.5 shadow-2xl relative">
+                            <div class="flex items-center justify-between text-[10px] text-amber-300/90 font-mono mb-1.5 px-1">
+                                <span class="flex items-center gap-1 font-bold">
+                                    <span>📺 BPL TAPRI TV</span>
+                                    <span id="ytStatusIndicator" class="text-green-400">● READY</span>
+                                </span>
+                                <div class="flex items-center gap-1 bg-stone-950 px-2 py-0.5 rounded-lg border border-amber-700/60">
+                                    <span class="text-[9px] text-amber-200/80">YT Video:</span>
+                                    <button id="tvVideoSwitchBtn" type="button" class="px-2 py-0.5 rounded text-[9px] font-bold bg-stone-800 text-amber-300 hover:bg-amber-500 hover:text-stone-950 transition cursor-pointer">
+                                        OFF (Audio Mode)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- TV Screen Frame -->
+                            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-stone-950 border-2 border-amber-900/90 shadow-inner">
+                                
+                                <!-- 1. WORKING TAPRI TV VIDEO SCREEN (HTML5 Direct Video + Live Retro TV Broadcast + YouTube IFrame) -->
+                                <div id="tvYoutubeContainer" class="absolute inset-0 bg-black flex flex-col z-10 overflow-hidden cursor-pointer" title="Click TV Screen to Play/Unmute TV Sound">
+                                    <!-- Direct HTML5 MP4 Video Stream (Synced with TV Sound) -->
+                                    <video id="tapriDirectVideoPlayer" class="w-full h-full object-cover hidden" playsinline loop crossorigin="anonymous"></video>
+                                    
+                                    <!-- Animated Retro 90s Tapri TV Broadcast Layer (Synced with Song Poster & Lyrics) -->
+                                    <div id="tapriLiveBroadcastTv" class="relative w-full h-full flex flex-col justify-between p-2.5 overflow-hidden bg-stone-950">
+                                        <img id="tvBroadcastSlideImg" src="https://i.ytimg.com/vi/kb24AlYxSOc/hqdefault.jpg" alt="TV Broadcast" class="absolute inset-0 w-full h-full object-cover opacity-85 transition-transform duration-1000 scale-105" style="animation: tvPanZoom 10s ease-in-out infinite alternate;" onerror="this.src='https://placehold.co/480x270/451a03/fde68a?text=Chai+Ki+Tapri+TV'">
+                                        
+                                        <!-- CRT Scanlines & Doordarshan/90s Channel Logo Overlay -->
+                                        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.38) 50%), radial-gradient(circle, transparent 55%, rgba(0,0,0,0.65) 100%); background-size: 100% 3px, 100% 100%;"></div>
+
+                                        <div class="relative z-10 flex items-center justify-between">
+                                            <span class="px-2 py-0.5 rounded bg-red-600/90 text-white text-[9px] font-mono font-bold tracking-wider uppercase flex items-center gap-1 shadow">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> LIVE TAPRI TV
+                                            </span>
+                                            <button id="tvSoundIndicatorBtn" type="button" class="px-2 py-0.5 rounded bg-amber-500 text-stone-950 text-[9px] font-mono font-bold border border-amber-300 shadow flex items-center gap-1 cursor-pointer">
+                                                <i id="tvSoundIcon" class="fa-solid fa-volume-high"></i>
+                                                <span id="tvSoundLabel">TV SOUND: ON</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="relative z-10 mt-auto bg-gradient-to-t from-black/95 via-black/75 to-transparent -mx-2.5 -mb-2.5 p-2.5 pt-5 flex items-end justify-between gap-2">
+                                            <div class="min-w-0 text-left">
+                                                <div class="text-[9px] font-mono text-amber-400 uppercase tracking-wider">▶ NOW SHOWING ON TAPRI TV</div>
+                                                <div id="tvBroadcastTitle" class="text-xs font-bold text-amber-100 truncate">Chai Ki Tapri Pe</div>
+                                                <div id="tvBroadcastArtist" class="text-[10px] text-amber-300/80 truncate">Tapri Opening Anthem</div>
+                                            </div>
+                                            <div class="flex items-end gap-0.5 h-5 shrink-0">
+                                                <div class="w-1 bg-amber-400 eq-bar eq-bar-1"></div>
+                                                <div class="w-1 bg-orange-400 eq-bar eq-bar-2"></div>
+                                                <div class="w-1 bg-yellow-300 eq-bar eq-bar-3"></div>
+                                                <div class="w-1 bg-amber-500 eq-bar eq-bar-4"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hidden YouTube IFrame Mount for Live Domain Use -->
+                                    <div id="ytPlayerMount" class="hidden"></div>
+                                </div>
+
+                                <!-- 2. RETRO TAPRI TV VISUALIZER SHUTTER (Audio Mode View) -->
+                                <div id="tvVisualizerScreen" class="absolute inset-0 z-20 flex flex-col items-center justify-between p-3 bg-gradient-to-br from-amber-950 via-stone-950 to-black text-center select-none">
+                                    <img id="tvBgYtThumb" src="https://i.ytimg.com/vi/kb24AlYxSOc/hqdefault.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30 blur-[1px] pointer-events-none" onerror="this.style.opacity='0'">
+
+                                    <div class="relative z-10 w-full flex items-center justify-between text-[9px] font-mono text-amber-400/90 border-b border-amber-800/40 pb-1">
+                                        <span>CH-09 • DELUXE TAPRI RADIO</span>
+                                        <span id="tvSongQualityBadge" class="text-green-400">● FULL SONG READY</span>
+                                    </div>
+
+                                    <div class="relative z-10 my-auto flex flex-col items-center">
+                                        <div class="relative w-14 h-14 rounded-full border-2 border-amber-400/90 bg-stone-900 flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.4)] overflow-hidden">
+                                            <img id="tvCoverThumb" src="https://i.ytimg.com/vi/kb24AlYxSOc/hqdefault.jpg" alt="Album Art" class="w-full h-full object-cover opacity-90 reel-spin" onerror="this.src='https://placehold.co/120x120/78350f/fde68a?text=Chai+FM'">
+                                            <div class="absolute w-3.5 h-3.5 rounded-full bg-amber-300 border-2 border-stone-950"></div>
+                                        </div>
+                                        <p id="tvScreenSongTitle" class="text-xs font-bold text-amber-200 mt-1.5 line-clamp-1 px-2 drop-shadow">
+                                            Chai Ki Tapri Pe (Anthem)
+                                        </p>
+                                        <p id="tvScreenArtist" class="text-[10px] text-amber-400/90 line-clamp-1">
+                                            Tapri Opening Special • Full Song
+                                        </p>
+                                    </div>
+
+                                    <div class="relative z-10 w-full flex items-center justify-between text-[9px] text-amber-300/80 pt-1 border-t border-amber-900/40">
+                                        <button id="turnOnVideoInlineBtn" type="button" class="hover:text-amber-300 underline cursor-pointer font-semibold">
+                                            📺 Show/Hide Video
+                                        </button>
+                                        <a id="openDirectYtLink" href="https://www.youtube.com/watch?v=kb24AlYxSOc" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 flex items-center gap-1 font-semibold">
+                                            <i class="fa-brands fa-youtube text-red-500"></i> Open on YT
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TV Bottom Status & Quick Controls -->
+                            <div class="flex items-center justify-between mt-1.5 px-1 text-[10px] text-amber-200/80">
+                                <span id="audioSourceStatus" class="truncate">🎵 Deluxe Tapri Radio Ready</span>
+                                <div class="flex items-center gap-2 shrink-0 ml-2">
+                                    <button id="tryAltYtBtn" type="button" class="text-amber-300 hover:text-amber-200 underline font-semibold cursor-pointer" title="Switch to alternate YouTube upload">
+                                        Alt Link
+                                    </button>
+                                    <button id="hideTvBoxBtn" type="button" class="text-amber-400 hover:text-amber-300 underline font-semibold cursor-pointer">
+                                        Hide TV
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wooden Tapri Table Ledge -->
+                <div class="h-3 w-full bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 rounded-full border-t border-amber-500/40 shadow-inner"></div>
+            </div>
+
+            <!-- ==========================================
+                 5. RETRO WOODEN CASSETTE RADIO DECK
+            =========================================== -->
+            <div id="playerDeckRoot" class="radio-deck rounded-3xl p-4 sm:p-5 relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                    
+                    <!-- Spinning Cassette Tape Window (4 Cols) -->
+                    <div class="md:col-span-4 bg-stone-950/90 border-2 border-amber-700/70 rounded-2xl p-3 shadow-inner relative">
+                        <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 rounded-lg px-2.5 py-1 flex items-center justify-between text-stone-950 mb-2">
+                            <span id="cassetteAlbumBadge" class="text-[10px] font-extrabold uppercase tracking-wider truncate">
+                                ☕ TAPRI CLASSICS
+                            </span>
+                            <span class="text-[10px] font-mono font-bold bg-stone-950 text-amber-300 px-1.5 rounded">
+                                A-SIDE
+                            </span>
+                        </div>
+
+                        <!-- Cassette Spools -->
+                        <div class="bg-stone-900 border border-amber-900/80 rounded-xl py-2.5 px-4 flex items-center justify-between relative">
+                            <div class="w-10 h-10 rounded-full border-2 border-amber-400/80 bg-stone-950 flex items-center justify-center reel-spin">
+                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                                <div class="absolute w-8 h-0.5 bg-amber-400/60"></div>
+                                <div class="absolute w-0.5 h-8 bg-amber-400/60"></div>
+                            </div>
+
+                            <div class="flex items-end gap-1 h-7 px-2">
+                                <div class="w-1.5 bg-amber-400 rounded-full eq-bar eq-bar-1"></div>
+                                <div class="w-1.5 bg-orange-400 rounded-full eq-bar eq-bar-2"></div>
+                                <div class="w-1.5 bg-yellow-300 rounded-full eq-bar eq-bar-3"></div>
+                                <div class="w-1.5 bg-amber-500 rounded-full eq-bar eq-bar-4"></div>
+                            </div>
+
+                            <div class="w-10 h-10 rounded-full border-2 border-amber-400/80 bg-stone-950 flex items-center justify-center reel-spin">
+                                <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                                <div class="absolute w-8 h-0.5 bg-amber-400/60"></div>
+                                <div class="absolute w-0.5 h-8 bg-amber-400/60"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Track Info, Progress & Tactile Buttons (8 Cols) -->
+                    <div class="md:col-span-8 flex flex-col justify-between gap-3">
+                        <div class="flex flex-wrap items-start justify-between gap-2">
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-2">
+                                    <span id="anthemTagBadge" class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-500 text-stone-950">
+                                        ★ FIRST SONG • TAPRI ANTHEM
+                                    </span>
+                                    <span id="trackCounterLabel" class="font-mono text-xs text-amber-400/80">
+                                        Track 1/21 (Total 105 Songs)
+                                    </span>
+                                </div>
+                                <h3 id="nowPlayingTitle" class="text-base sm:text-xl font-bold text-amber-200 truncate mt-1">
+                                    Chai Ki Tapri Pe (चाय की टपरी)
+                                </h3>
+                                <p id="nowPlayingArtist" class="text-xs text-amber-400/80 truncate">
+                                    Tapri Opening Special • 90s & 2000s Retro Station
+                                </p>
+                            </div>
+
+                            <!-- Music Volume Control -->
+                            <div class="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-xl border border-amber-900/50">
+                                <button id="muteToggleBtn" type="button" class="text-amber-300 hover:text-amber-400 text-sm cursor-pointer">
+                                    <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
+                                </button>
+                                <input id="musicVolumeSlider" type="range" min="0" max="100" value="85" class="w-20 sm:w-24">
+                                <span id="musicVolumeVal" class="font-mono text-xs text-amber-300 w-8 text-right">85%</span>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="flex items-center gap-2.5 text-xs font-mono text-amber-300/80">
+                            <span id="currentTimeLabel">0:00</span>
+                            <input id="progressSlider" type="range" min="0" max="100" value="0" class="flex-1">
+                            <span id="durationTimeLabel">4:15</span>
+                        </div>
+
+                        <!-- Tactile Cassette Buttons -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                            <div class="flex items-center gap-2">
+                                <button id="prevTrackBtn" type="button" class="px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 border-b-4 border-stone-950 active:border-b-0 active:translate-y-0.5 text-amber-200 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 cursor-pointer">
+                                    <i class="fa-solid fa-backward-step"></i>
+                                    <span>Prev</span>
+                                </button>
+
+                                <button id="playPauseBtn" type="button" class="px-6 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 border-b-4 border-amber-800 active:border-b-0 active:translate-y-0.5 text-stone-950 text-xs sm:text-sm font-extrabold transition flex items-center gap-2 shadow-lg cursor-pointer">
+                                    <i id="playPauseIcon" class="fa-solid fa-play"></i>
+                                    <span id="playPauseText">PLAY</span>
+                                </button>
+
+                                <button id="nextTrackBtn" type="button" class="px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 border-b-4 border-stone-950 active:border-b-0 active:translate-y-0.5 text-amber-200 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 cursor-pointer">
+                                    <span>Next</span>
+                                    <i class="fa-solid fa-forward-step"></i>
+                                </button>
+
+                                <button id="shuffleToggleBtn" type="button" class="px-3 py-2 rounded-xl bg-stone-900 hover:bg-stone-800 border-b-4 border-stone-950 active:border-b-0 active:translate-y-0.5 text-amber-300 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Toggle Shuffle Mode across 105 Songs">
+                                    <i class="fa-solid fa-shuffle"></i>
+                                    <span id="shuffleBtnLabel">Shuffle: OFF</span>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                <button id="replayFirstSongBtn" type="button" class="px-3 py-2 rounded-xl bg-amber-950/90 hover:bg-amber-900 border border-amber-600/50 text-amber-200 text-xs font-medium transition flex items-center gap-1.5 cursor-pointer" title="Replay the mandatory first song: Chai Ki Tapri">
+                                    <i class="fa-solid fa-rotate-left text-amber-400"></i>
+                                    <span>Replay 'Chai Ki Tapri'</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- ==========================================
+         6. PLAYLIST & CUSTOM YOUTUBE URL MODAL
+    =========================================== -->
+    <div id="playlistModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="max-w-2xl w-full radio-deck rounded-3xl p-5 sm:p-6 border-2 border-amber-500/60 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b border-amber-800/60">
+                <div>
+                    <h2 class="font-signboard text-2xl text-amber-300">
+                        📻 टपरी कैसेट लिस्ट & YouTube Song Manager
+                    </h2>
+                    <p class="text-xs text-amber-200/70">
+                        किसी भी गाने पर क्लिक करके पूरा गाना (4–7 Min) बजाएं या अपना नया YouTube गाना जोड़ें
+                    </p>
+                </div>
+                <button id="closePlaylistModalBtn" type="button" class="w-9 h-9 rounded-full bg-stone-900 hover:bg-red-900/60 text-amber-200 flex items-center justify-center border border-amber-700/50 cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Add or Change First Song / Custom YouTube Track Form -->
+            <div class="my-4 bg-black/40 p-3.5 rounded-2xl border border-amber-700/50 space-y-3">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-300 uppercase tracking-wider">
+                        <i class="fa-brands fa-youtube text-red-500 mr-1"></i> कोई भी YouTube Link या गाने का नाम डालें (Auto-Sync!)
+                    </span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                    <input id="customSongUrlInput" type="text" placeholder="YouTube URL पेस्ट करें (e.g. https://youtu.be/...)" class="sm:col-span-6 bg-stone-900 border border-amber-700/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-amber-100 placeholder-amber-200/40 focus:outline-none focus:border-amber-400">
+                    <input id="customSongTitleInput" type="text" placeholder="गाने का नाम (खाली छोड़ने पर खुद ले लेगा)" class="sm:col-span-4 bg-stone-900 border border-amber-700/60 rounded-xl px-3 py-2 text-xs sm:text-sm text-amber-100 placeholder-amber-200/40 focus:outline-none focus:border-amber-400">
+                    <button id="addCustomTrackBtn" type="button" class="sm:col-span-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold rounded-xl px-3 py-2 text-xs sm:text-sm transition cursor-pointer">
+                        + Play / Add
+                    </button>
+                </div>
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                    <button id="setAsFirstSongBtn" type="button" class="text-xs bg-amber-600/30 hover:bg-amber-500/40 text-amber-200 px-3 py-1 rounded-lg border border-amber-500/40 transition cursor-pointer">
+                        ⭐ इस YouTube गाने को 'First Opening Song' बनाएं
+                    </button>
+                    <span id="modalFeedbackMsg" class="text-xs text-green-400 font-medium"></span>
+                </div>
+            </div>
+
+            <!-- Current Station Tracklist -->
+            <div id="modalTracklistContainer" class="flex-1 overflow-y-auto space-y-2 pr-1 max-h-72">
+                <!-- Populated dynamically -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="pt-3 mt-3 border-t border-amber-800/60 flex items-center justify-between text-xs text-amber-300/70">
+                <span>Tip: पहला गाना हमेशा 'Chai Ki Tapri' बजता है, उसके बाद 90s/2000s के पूरे गाने!</span>
+                <button id="resetDefaultTracksBtn" type="button" class="underline hover:text-amber-300 cursor-pointer">
+                    Reset Default Playlist
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         7. TOAST NOTIFICATION BANNER & AUDIO ELEMENT
+    =========================================== -->
+    <div id="toastBanner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 bg-amber-500 text-stone-950 font-bold px-4 py-2.5 rounded-2xl shadow-2xl border-2 border-amber-200 text-xs sm:text-sm">
+        <i class="fa-solid fa-mug-hot"></i>
+        <span id="toastMessage">गरमा-गरम कटिंग चाय तैयार है!</span>
+    </div>
+
+    <!-- Single Clean HTML5 Audio Element for Unblockable Full-Length Streaming -->
+    <audio id="realVocalAudioPlayer" preload="auto" crossorigin="anonymous" class="hidden"></audio>
+
+    <!-- ==========================================
+         8. APPLICATION JAVASCRIPT (ERROR-FREE DELUXE SALON ARCHITECTURE)
+    =========================================== -->
+    <script>
+        /**************************************************************
+         * 1. MANDATORY FIRST SONG & 105+ YOUTUBE SONGS (5 CASSETTES)
+         **************************************************************/
+        const DEFAULT_TAPRI_ANTHEM = {
+            id: 'kb24AlYxSOc',
+            fallbackIds: ['9LtVdxoGz9Q', 'v08MF5mbBLk', 'u9gO9ScQER0', 'g0s3TuOCU8k'],
+            title: 'Chai Ki Tapri Pe (चाय की टपरी पे - Tapri Anthem)',
+            artist: 'Tapri Opening Special • Chai Ki Tapri Viral Anthem',
+            searchTerms: [
+                'Chai Ki Tapri Pe',
+                'Meri Chai Ki Tapri Pe',
+                'Chai Ki Tapri',
+                'Ek Garam Chai Ki Pyali Ho'
+            ],
+            searchQuery: 'Chai Ki Tapri Pe',
+            isAnthem: true
+        };
+
+        const DEFAULT_STATIONS = [
+            {
+                id: 'tapri_classics',
+                name: '☕ Tapri Classics (21 Evergreen Hits)',
+                subtitle: 'Chai Ki Tapri + 90s & 2000s के सबसे बड़े सदाबहार गाने',
+                badgeColor: 'from-amber-500 to-orange-600',
+                tracks: [
+                    { ...DEFAULT_TAPRI_ANTHEM },
+                    { id: 'SBfPs-PMGTA', fallbackIds: ['POTy3mDRcCE', 'tnuwiLr_-nA'], title: 'Pehla Nasha Pehla Khumar', artist: 'Udit Narayan, Sadhana Sargam • Jo Jeeta Wohi Sikandar (1992)', searchQuery: 'Pehla Nasha Udit Narayan' },
+                    { id: 'wH1sQAPuIX4', fallbackIds: ['pBVkxiAmAcc', 'x_elT6zkqN0'], title: 'O O Jaane Jaana', artist: 'Kamaal Khan • Pyaar Kiya To Darna Kya (1998)', searchQuery: 'O O Jaane Jaana Kamaal Khan' },
+                    { id: 'X-gX1RSuL9E', fallbackIds: ['KVEmFe59JhU', '64KSVbMDr0c'], title: 'Tanha Dil Tanha Safar', artist: 'Shaan • Tanha Dil Album (2000)', searchQuery: 'Tanha Dil Shaan' },
+                    { id: '3vQS80G2eec', fallbackIds: ['Y2Zq3wSMATw', 'Yqj1_V90KJo'], title: 'Chura Ke Dil Mera', artist: 'Kumar Sanu, Alka Yagnik • Main Khiladi Tu Anari (1994)', searchQuery: 'Chura Ke Dil Mera Kumar Sanu' },
+                    { id: 'gWDTY_mHUzY', fallbackIds: ['TQzhiXpTkHU', 'RVQsBlI35vw'], title: 'Mera Dil Bhi Kitna Pagal Hai', artist: 'Kumar Sanu, Alka Yagnik • Saajan (1991)', searchQuery: 'Mera Dil Bhi Kitna Pagal Hai Kumar Sanu' },
+                    { id: '0OCkTJsMd8U', fallbackIds: ['6bmDbIk8zUc', 'dWqb-WqbGh8'], title: 'O Sanam (Sunoh)', artist: 'Lucky Ali • 90s Indie Pop Masterpiece (1996)', searchQuery: 'O Sanam Lucky Ali' },
+                    { id: 'NeXbmEnpSz0', fallbackIds: ['pdoM2FzGoog', 'RkWHSzK4SUw'], title: 'Zara Zara Behekta Hai', artist: 'Bombay Jayashri • Rehnaa Hai Terre Dil Mein (2001)', searchQuery: 'Zara Zara Rehnaa Hai Terre Dil Mein' },
+                    { id: 'K-pX4qwtAxA', fallbackIds: ['zaJPvEM7fVY', 'zYJp5qpn2Jo'], title: 'Chaiyya Chaiyya', artist: 'Sukhwinder Singh, Sapna Awasthi • Dil Se (1998)', searchQuery: 'Chaiyya Chaiyya Dil Se' },
+                    { id: 'ay6pwhXPNvo', fallbackIds: ['F73ADv7f2Ug', 'cNV5hLSa9H8'], title: 'Tujhe Dekha To Yeh Jaana Sanam', artist: 'Kumar Sanu, Lata Mangeshkar • DDLJ (1995)', searchQuery: 'Tujhe Dekha To Yeh Jaana Sanam Kumar Sanu' },
+                    { id: 'VMsn5-a45-s', fallbackIds: ['HyKuXycQXkg', '9u-r5W4WVO4'], title: 'Tip Tip Barsa Paani', artist: 'Udit Narayan, Alka Yagnik • Mohra (1994)', searchQuery: 'Tip Tip Barsa Paani Mohra' },
+                    { id: 'OF1JfBVMC-k', fallbackIds: ['bKZTnnFU9HA', '_1KqB_17dJE'], title: 'Kuch Kuch Hota Hai', artist: 'Udit Narayan, Alka Yagnik • KKHH (1998)', searchQuery: 'Kuch Kuch Hota Hai Udit Narayan Alka Yagnik' },
+                    { id: 'Swlik5Hfu-A', fallbackIds: ['CwTj1PTk5K0', 'W5lusYuAW0s'], title: 'Pardesi Pardesi Jaana Nahi', artist: 'Udit Narayan, Alka Yagnik • Raja Hindustani (1996)', searchQuery: 'Pardesi Pardesi Raja Hindustani' },
+                    { id: 'JlRTaBJchSA', fallbackIds: ['kgpzxR0v5c8', 'KwiDJclWo44'], title: 'Tadap Tadap Ke Is Dil Se', artist: 'KK • Hum Dil De Chuke Sanam (1999)', searchQuery: 'Tadap Tadap Ke KK' },
+                    { id: '5vzKpjMFHTY', fallbackIds: ['qWujlsi-R6U', 'LCfvYo3ILG0'], title: 'Yaaron Dosti Badi Hi Haseen Hai', artist: 'KK • Pal Album (1999)', searchQuery: 'Yaaron Dosti KK' },
+                    { id: 'HaqGZcvbt1U', fallbackIds: ['2IVE5mu4Ie4', '3uTzfhqdcn8'], title: 'Tum To Thehre Pardesi', artist: 'Altaf Raja • 90s Tapri Cassette Legend (1997)', searchQuery: 'Tum To Thehre Pardesi Altaf Raja' },
+                    { id: 'HCKeFdWaiIo', fallbackIds: ['X-gX1RSuL9E', '64KSVbMDr0c'], title: 'Bhool Ja (Tanha Dil)', artist: 'Shaan • 2000s Superhit Album', searchQuery: 'Bhool Ja Shaan' },
+                    { id: 'oJcE_QPFAng', fallbackIds: ['OF1JfBVMC-k', 'bKZTnnFU9HA'], title: 'Ladki Badi Anjani Hai', artist: 'Kumar Sanu, Alka Yagnik • Kuch Kuch Hota Hai (1998)', searchQuery: 'Ladki Badi Anjani Hai Kumar Sanu' },
+                    { id: 'Ee3chpa00r4', fallbackIds: ['gWDTY_mHUzY', 'RVQsBlI35vw'], title: 'Dheere Dheere Se Meri Zindagi Mein Aana', artist: 'Kumar Sanu, Anuradha Paudwal • Aashiqui (1990)', searchQuery: 'Dheere Dheere Se Meri Zindagi Mein Aana Aashiqui' },
+                    { id: '6bmDbIk8zUc', fallbackIds: ['0OCkTJsMd8U', 'dWqb-WqbGh8'], title: 'Ek Ladki Ko Dekha To Aisa Laga', artist: 'Kumar Sanu • 1942 A Love Story (1994)', searchQuery: 'Ek Ladki Ko Dekha To Aisa Laga Kumar Sanu' },
+                    { id: 'POTy3mDRcCE', fallbackIds: ['SBfPs-PMGTA', 'tnuwiLr_-nA'], title: 'Chand Chupa Badal Mein', artist: 'Udit Narayan, Alka Yagnik • Hum Dil De Chuke Sanam (1999)', searchQuery: 'Chand Chupa Badal Mein Udit Narayan' }
+                ]
+            },
+            {
+                id: 'baarish_pakode',
+                name: '🌧️ Baarish & Pakode (21 Monsoon Hits)',
+                subtitle: 'रिमझिम बारिश, गरम पकोड़े और 90s–2000s के रोमांटिक गाने',
+                badgeColor: 'from-sky-500 to-blue-700',
+                tracks: [
+                    { ...DEFAULT_TAPRI_ANTHEM },
+                    { id: 'VMsn5-a45-s', fallbackIds: ['HyKuXycQXkg', '9u-r5W4WVO4'], title: 'Tip Tip Barsa Paani', artist: 'Udit Narayan, Alka Yagnik • Mohra (1994)', searchQuery: 'Tip Tip Barsa Paani Mohra' },
+                    { id: 'NeXbmEnpSz0', fallbackIds: ['pdoM2FzGoog', 'RkWHSzK4SUw'], title: 'Zara Zara Behekta Hai', artist: 'Rehnaa Hai Terre Dil Mein (2001)', searchQuery: 'Zara Zara Rehnaa Hai Terre Dil Mein' },
+                    { id: 'OF1JfBVMC-k', fallbackIds: ['bKZTnnFU9HA', '_1KqB_17dJE'], title: 'Kuch Kuch Hota Hai', artist: 'Udit Narayan, Alka Yagnik • KKHH (1998)', searchQuery: 'Kuch Kuch Hota Hai Udit Narayan' },
+                    { id: 'SBfPs-PMGTA', fallbackIds: ['POTy3mDRcCE', 'tnuwiLr_-nA'], title: 'Pehla Nasha Pehla Khumar', artist: 'Udit Narayan, Sadhana Sargam (1992)', searchQuery: 'Pehla Nasha Udit Narayan' },
+                    { id: '0OCkTJsMd8U', fallbackIds: ['6bmDbIk8zUc', 'dWqb-WqbGh8'], title: 'O Sanam (Monsoon Guitar Vibe)', artist: 'Lucky Ali • Sunoh (1996)', searchQuery: 'O Sanam Lucky Ali' },
+                    { id: 'ay6pwhXPNvo', fallbackIds: ['F73ADv7f2Ug', 'cNV5hLSa9H8'], title: 'Tujhe Dekha To Yeh Jaana Sanam', artist: 'Kumar Sanu, Lata Mangeshkar • DDLJ (1995)', searchQuery: 'Tujhe Dekha To Yeh Jaana Sanam' },
+                    { id: '3vQS80G2eec', fallbackIds: ['Y2Zq3wSMATw', 'Yqj1_V90KJo'], title: 'Chura Ke Dil Mera', artist: 'Kumar Sanu, Alka Yagnik (1994)', searchQuery: 'Chura Ke Dil Mera Kumar Sanu' },
+                    { id: 'gWDTY_mHUzY', fallbackIds: ['TQzhiXpTkHU', 'RVQsBlI35vw'], title: 'Mera Dil Bhi Kitna Pagal Hai', artist: 'Kumar Sanu, Alka Yagnik • Saajan (1991)', searchQuery: 'Mera Dil Bhi Kitna Pagal Hai' },
+                    { id: 'K-pX4qwtAxA', fallbackIds: ['zaJPvEM7fVY', 'zYJp5qpn2Jo'], title: 'Chaiyya Chaiyya', artist: 'Sukhwinder Singh • Dil Se (1998)', searchQuery: 'Chaiyya Chaiyya Dil Se' },
+                    { id: 'Swlik5Hfu-A', fallbackIds: ['CwTj1PTk5K0', 'W5lusYuAW0s'], title: 'Pardesi Pardesi Jaana Nahi', artist: 'Udit Narayan, Alka Yagnik (1996)', searchQuery: 'Pardesi Pardesi Raja Hindustani' },
+                    { id: 'wH1sQAPuIX4', fallbackIds: ['pBVkxiAmAcc', 'x_elT6zkqN0'], title: 'O O Jaane Jaana', artist: 'Kamaal Khan (1998)', searchQuery: 'O O Jaane Jaana Kamaal Khan' },
+                    { id: 'X-gX1RSuL9E', fallbackIds: ['KVEmFe59JhU', '64KSVbMDr0c'], title: 'Tanha Dil Tanha Safar', artist: 'Shaan (2000)', searchQuery: 'Tanha Dil Shaan' },
+                    { id: 'oJcE_QPFAng', fallbackIds: ['OF1JfBVMC-k', 'bKZTnnFU9HA'], title: 'Ladki Badi Anjani Hai', artist: 'Kumar Sanu, Alka Yagnik (1998)', searchQuery: 'Ladki Badi Anjani Hai' },
+                    { id: 'pdoM2FzGoog', fallbackIds: ['NeXbmEnpSz0', 'RkWHSzK4SUw'], title: 'Baahon Ke Darmiyan', artist: 'Hariharan, Alka Yagnik • Khamoshi (1996)', searchQuery: 'Baahon Ke Darmiyan Khamoshi' },
+                    { id: 'HyKuXycQXkg', fallbackIds: ['VMsn5-a45-s', '9u-r5W4WVO4'], title: 'Jo Haal Dil Ka Idhar Ho Raha Hai', artist: 'Kumar Sanu, Alka Yagnik • Sarfarosh (1999)', searchQuery: 'Jo Haal Dil Ka Sarfarosh' },
+                    { id: 'Y2Zq3wSMATw', fallbackIds: ['3vQS80G2eec', '6Na7GSV9bVY'], title: 'Taal Se Taal Mila', artist: 'Alka Yagnik, Udit Narayan • Taal (1999)', searchQuery: 'Taal Se Taal Mila Alka Yagnik' },
+                    { id: 'F73ADv7f2Ug', fallbackIds: ['ay6pwhXPNvo', 'cNV5hLSa9H8'], title: 'Do Dil Mil Rahe Hain', artist: 'Kumar Sanu • Pardes (1997)', searchQuery: 'Do Dil Mil Rahe Hain Pardes' },
+                    { id: '5vzKpjMFHTY', fallbackIds: ['qWujlsi-R6U', 'LCfvYo3ILG0'], title: 'Yaaron Dosti', artist: 'KK • Pal (1999)', searchQuery: 'Yaaron Dosti KK' },
+                    { id: 'TQzhiXpTkHU', fallbackIds: ['gWDTY_mHUzY', 'RVQsBlI35vw'], title: 'Pyar Kiya To Nibhana', artist: 'Udit Narayan, Anuradha Paudwal • Major Saab (1998)', searchQuery: 'Pyar Kiya To Nibhana Major Saab' },
+                    { id: '9LtVdxoGz9Q', fallbackIds: ['kb24AlYxSOc', 'v08MF5mbBLk'], title: 'Ghar Se Nikalte Hi', artist: 'Udit Narayan • Papa Kahte Hain (1996)', searchQuery: 'Ghar Se Nikalte Hi Udit Narayan' }
+                ]
+            },
+            {
+                id: 'kadak_dard',
+                name: '💔 90s Kadak Dard (21 Aashiqui & Sad Hits)',
+                subtitle: 'कुमार सानू, अल्ताफ़ राजा, उदित नारायण और KK के दर्द भरे गाने',
+                badgeColor: 'from-rose-600 to-red-800',
+                tracks: [
+                    { ...DEFAULT_TAPRI_ANTHEM },
+                    { id: 'HaqGZcvbt1U', fallbackIds: ['2IVE5mu4Ie4', '3uTzfhqdcn8'], title: 'Tum To Thehre Pardesi', artist: 'Altaf Raja • 90s Tapri Cassette Legend (1997)', searchQuery: 'Tum To Thehre Pardesi Altaf Raja' },
+                    { id: 'JlRTaBJchSA', fallbackIds: ['kgpzxR0v5c8', 'KwiDJclWo44'], title: 'Tadap Tadap Ke Is Dil Se', artist: 'KK • Hum Dil De Chuke Sanam (1999)', searchQuery: 'Tadap Tadap Ke KK' },
+                    { id: 'Swlik5Hfu-A', fallbackIds: ['CwTj1PTk5K0', 'p1BqT2YBJgo'], title: 'Pardesi Pardesi Jaana Nahi', artist: 'Udit Narayan, Alka Yagnik • Raja Hindustani (1996)', searchQuery: 'Pardesi Pardesi Raja Hindustani' },
+                    { id: 'gWDTY_mHUzY', fallbackIds: ['Ee3chpa00r4', 'RVQsBlI35vw'], title: 'Mera Dil Bhi Kitna Pagal Hai', artist: 'Kumar Sanu, Alka Yagnik • Saajan (1991)', searchQuery: 'Mera Dil Bhi Kitna Pagal Hai' },
+                    { id: 'NeXbmEnpSz0', fallbackIds: ['pdoM2FzGoog', 'RkWHSzK4SUw'], title: 'Zara Zara Behekta Hai', artist: 'Rehnaa Hai Terre Dil Mein (2001)', searchQuery: 'Zara Zara Rehnaa Hai Terre Dil Mein' },
+                    { id: '0OCkTJsMd8U', fallbackIds: ['6bmDbIk8zUc', 'dWqb-WqbGh8'], title: 'O Sanam (Mohabbat Ke Safar Mein)', artist: 'Lucky Ali • Sunoh (1996)', searchQuery: 'O Sanam Lucky Ali' },
+                    { id: 'X-gX1RSuL9E', fallbackIds: ['KVEmFe59JhU', '64KSVbMDr0c'], title: 'Tanha Dil Tanha Safar', artist: 'Shaan (2000)', searchQuery: 'Tanha Dil Shaan' },
+                    { id: 'HCKeFdWaiIo', fallbackIds: ['X-gX1RSuL9E', '64KSVbMDr0c'], title: 'Bhool Ja (Jo Hua Use Bhool Ja)', artist: 'Shaan • Early 2000s Heartbreak Hit', searchQuery: 'Bhool Ja Shaan' },
+                    { id: 'p1BqT2YBJgo', fallbackIds: ['Swlik5Hfu-A', 'CwTj1PTk5K0'], title: 'Ab Tere Bin Jee Lenge Hum', artist: 'Kumar Sanu • Aashiqui (1990)', searchQuery: 'Ab Tere Bin Jee Lenge Hum Kumar Sanu' },
+                    { id: 'kgpzxR0v5c8', fallbackIds: ['JlRTaBJchSA', 'KwiDJclWo44'], title: 'Sach Keh Raha Hai Deewana', artist: 'KK • Rehnaa Hai Terre Dil Mein (2001)', searchQuery: 'Sach Keh Raha Hai Deewana KK' },
+                    { id: '2IVE5mu4Ie4', fallbackIds: ['HaqGZcvbt1U', 'OhW5yc9MqKs'], title: 'Accha Sila Diya Tune Mere Pyar Ka', artist: 'Sonu Nigam • Bewafa Sanam (1995)', searchQuery: 'Accha Sila Diya Tune Mere Pyar Ka Sonu Nigam' },
+                    { id: 'ay6pwhXPNvo', fallbackIds: ['F73ADv7f2Ug', 'cNV5hLSa9H8'], title: 'Jeeta Tha Jiske Liye', artist: 'Kumar Sanu, Alka Yagnik • Dilwale (1994)', searchQuery: 'Jeeta Tha Jiske Liye Dilwale' },
+                    { id: 'OF1JfBVMC-k', fallbackIds: ['bKZTnnFU9HA', '_1KqB_17dJE'], title: 'Tujhe Yaad Na Meri Aayee', artist: 'Udit Narayan, Alka Yagnik • KKHH (1998)', searchQuery: 'Tujhe Yaad Na Meri Aayee Kuch Kuch Hota Hai' },
+                    { id: 'Ee3chpa00r4', fallbackIds: ['_meCewF3Y3g', 'gWDTY_mHUzY'], title: 'Chupana Bhi Nahi Aata', artist: 'Vinod Rathod, Pankaj Udhas • Baazigar (1993)', searchQuery: 'Chupana Bhi Nahi Aata Baazigar' },
+                    { id: 'RkWHSzK4SUw', fallbackIds: ['NeXbmEnpSz0', 'pdoM2FzGoog'], title: 'Dil Hai Ke Manta Nahin', artist: 'Kumar Sanu, Anuradha Paudwal (1991)', searchQuery: 'Dil Hai Ke Manta Nahin Kumar Sanu' },
+                    { id: 'CwTj1PTk5K0', fallbackIds: ['Swlik5Hfu-A', 'W5lusYuAW0s'], title: 'Kaash Kahin Aisa Hota', artist: 'Kumar Sanu • Mohra (1994)', searchQuery: 'Kaash Kahin Aisa Hota Kumar Sanu' },
+                    { id: 'OhW5yc9MqKs', fallbackIds: ['2IVE5mu4Ie4', 'HaqGZcvbt1U'], title: 'Meri Mehbooba', artist: 'Kumar Sanu, Alka Yagnik • Pardes (1997)', searchQuery: 'Meri Mehbooba Pardes Kumar Sanu' },
+                    { id: 'YXKVgsfU_xw', fallbackIds: ['JlRTaBJchSA', 'kgpzxR0v5c8'], title: 'Tu Pyar Hai Kisi Aur Ka', artist: 'Kumar Sanu, Anuradha Paudwal • Dil Hai Ke Manta Nahin', searchQuery: 'Tu Pyar Hai Kisi Aur Ka Kumar Sanu' },
+                    { id: '5vzKpjMFHTY', fallbackIds: ['qWujlsi-R6U', 'LCfvYo3ILG0'], title: 'Humko Sirf Tumse Pyar Hai', artist: 'Kumar Sanu, Alka Yagnik • Barsaat (1995)', searchQuery: 'Humko Sirf Tumse Pyar Hai Barsaat' },
+                    { id: 'v08MF5mbBLk', fallbackIds: ['kb24AlYxSOc', '9LtVdxoGz9Q'], title: 'Aankh Hai Bhari Bhari', artist: 'Kumar Sanu • Tum Se Achcha Kaun Hai (2002)', searchQuery: 'Aankh Hai Bhari Bhari Kumar Sanu' }
+                ]
+            },
+            {
+                id: 'highway_tapri',
+                name: '🌙 Late Night Highway Tapri (21 2000s Pop)',
+                subtitle: 'लकी अली, शान, KK और कॉलेज के दिनों की यादें',
+                badgeColor: 'from-purple-600 to-indigo-900',
+                tracks: [
+                    { ...DEFAULT_TAPRI_ANTHEM },
+                    { id: '0OCkTJsMd8U', fallbackIds: ['6bmDbIk8zUc', 'dWqb-WqbGh8'], title: 'O Sanam (Sunoh)', artist: 'Lucky Ali • 90s Indi-Pop Evergreen', searchQuery: 'O Sanam Lucky Ali' },
+                    { id: '5vzKpjMFHTY', fallbackIds: ['qWujlsi-R6U', 'LCfvYo3ILG0'], title: 'Yaaron Dosti Badi Hi Haseen Hai', artist: 'KK • Pal Album (1999)', searchQuery: 'Yaaron Dosti KK' },
+                    { id: 'X-gX1RSuL9E', fallbackIds: ['KVEmFe59JhU', '64KSVbMDr0c'], title: 'Tanha Dil Tanha Safar', artist: 'Shaan • Early 2000s Superhit', searchQuery: 'Tanha Dil Shaan' },
+                    { id: 'HCKeFdWaiIo', fallbackIds: ['X-gX1RSuL9E', '64KSVbMDr0c'], title: 'Bhool Ja', artist: 'Shaan • Tanha Dil Album (2000)', searchQuery: 'Bhool Ja Shaan' },
+                    { id: '6bmDbIk8zUc', fallbackIds: ['0OCkTJsMd8U', 'dWqb-WqbGh8'], title: 'Ek Pal Ka Jeena', artist: 'Lucky Ali • Kaho Naa Pyaar Hai (2000)', searchQuery: 'Ek Pal Ka Jeena Lucky Ali' },
+                    { id: 'qWujlsi-R6U', fallbackIds: ['5vzKpjMFHTY', 'qmw8WuriGGQ'], title: 'Pyaar Ke Pal', artist: 'KK • Pal Album (1999)', searchQuery: 'Pyaar Ke Pal KK' },
+                    { id: 'NeXbmEnpSz0', fallbackIds: ['pdoM2FzGoog', 'RkWHSzK4SUw'], title: 'Zara Zara Bahekta Hai', artist: 'RHTDM Late Night Vibe', searchQuery: 'Zara Zara Rehnaa Hai Terre Dil Mein' },
+                    { id: 'wH1sQAPuIX4', fallbackIds: ['pBVkxiAmAcc', 'x_elT6zkqN0'], title: 'O O Jaane Jaana', artist: 'Kamaal Khan (1998)', searchQuery: 'O O Jaane Jaana Kamaal Khan' },
+                    { id: 'K-pX4qwtAxA', fallbackIds: ['zaJPvEM7fVY', 'zYJp5qpn2Jo'], title: 'Chaiyya Chaiyya (Highway Beat)', artist: 'Sukhwinder Singh • A.R. Rahman', searchQuery: 'Chaiyya Chaiyya Dil Se' },
+                    { id: 'JlRTaBJchSA', fallbackIds: ['kgpzxR0v5c8', 'KwiDJclWo44'], title: 'Woh Lamhe Woh Baatein', artist: 'Atif Aslam • Zeher (2005)', searchQuery: 'Woh Lamhe Woh Baatein Zeher' },
+                    { id: 'SBfPs-PMGTA', fallbackIds: ['POTy3mDRcCE', 'tnuwiLr_-nA'], title: 'Bheegey Hont Tere', artist: 'Kunal Ganjawala • Murder (2004)', searchQuery: 'Bheegey Hont Tere Kunal Ganjawala' },
+                    { id: 'KVEmFe59JhU', fallbackIds: ['X-gX1RSuL9E', 'c8QFL2zMulo'], title: 'Dooba Dooba Rehta Hoon', artist: 'Silk Route • Mohit Chauhan (1998)', searchQuery: 'Dooba Dooba Rehta Hoon Silk Route' },
+                    { id: 'pdoM2FzGoog', fallbackIds: ['NeXbmEnpSz0', 'RkWHSzK4SUw'], title: 'Maeri (Euphoria)', artist: 'Palash Sen • Euphoria (2000)', searchQuery: 'Maeri Euphoria Palash Sen' },
+                    { id: 'pBVkxiAmAcc', fallbackIds: ['wH1sQAPuIX4', 'x_elT6zkqN0'], title: 'Gori Teri Aankhen Kahe', artist: 'Lucky Ali, Kavita Krishnamurthy (2001)', searchQuery: 'Gori Teri Aankhen Lucky Ali' },
+                    { id: 'qmw8WuriGGQ', fallbackIds: ['5vzKpjMFHTY', 'qWujlsi-R6U'], title: 'Dil Chahta Hai Title Track', artist: 'Shankar Mahadevan • Dil Chahta Hai (2001)', searchQuery: 'Dil Chahta Hai Shankar Mahadevan' },
+                    { id: 'TQzhiXpTkHU', fallbackIds: ['gWDTY_mHUzY', 'Ee3chpa00r4'], title: 'Na Tum Jaano Na Hum', artist: 'Lucky Ali • Kaho Naa Pyaar Hai (2000)', searchQuery: 'Na Tum Jaano Na Hum Lucky Ali' },
+                    { id: '3vQS80G2eec', fallbackIds: ['Y2Zq3wSMATw', 'Yqj1_V90KJo'], title: 'Chاند Sifarish', artist: 'Shaan, Kailash Kher • Fanaa (2006)', searchQuery: 'Chand Sifarish Shaan' },
+                    { id: 'ay6pwhXPNvo', fallbackIds: ['F73ADv7f2Ug', 'cNV5hLSa9H8'], title: 'Teri Deewani', artist: 'Kailash Kher • Kailasa (2006)', searchQuery: 'Teri Deewani Kailash Kher' },
+                    { id: '9LtVdxoGz9Q', fallbackIds: ['kb24AlYxSOc', 'v08MF5mbBLk'], title: 'Aadat (Kalyug)', artist: 'Atif Aslam • Kalyug (2005)', searchQuery: 'Aadat Atif Aslam Kalyug' },
+                    { id: 'u9gO9ScQER0', fallbackIds: ['kb24AlYxSOc', '9LtVdxoGz9Q'], title: 'Tu Hi Meri Shab Hai', artist: 'KK • Gangster (2006)', searchQuery: 'Tu Hi Meri Shab Hai KK' }
+                ]
+            },
+            {
+                id: 'purani_cassette',
+                name: '📻 Purani Cassette (21 Kumar Sanu & Udit Gold)',
+                subtitle: '90s की असली झंकार बीट्स और कुमार सानू–उदित नारायण के डुएट्स',
+                badgeColor: 'from-emerald-600 to-teal-800',
+                tracks: [
+                    { ...DEFAULT_TAPRI_ANTHEM },
+                    { id: '3vQS80G2eec', fallbackIds: ['Y2Zq3wSMATw', 'Yqj1_V90KJo'], title: 'Chura Ke Dil Mera', artist: 'Kumar Sanu, Alka Yagnik • Main Khiladi Tu Anari (1994)', searchQuery: 'Chura Ke Dil Mera Kumar Sanu' },
+                    { id: 'gWDTY_mHUzY', fallbackIds: ['TQzhiXpTkHU', 'RVQsBlI35vw'], title: 'Mera Dil Bhi Kitna Pagal Hai', artist: 'Kumar Sanu, Alka Yagnik • Saajan (1991)', searchQuery: 'Mera Dil Bhi Kitna Pagal Hai Kumar Sanu' },
+                    { id: 'SBfPs-PMGTA', fallbackIds: ['POTy3mDRcCE', 'tnuwiLr_-nA'], title: 'Pehla Nasha Pehla Khumar', artist: 'Udit Narayan, Sadhana Sargam (1992)', searchQuery: 'Pehla Nasha Udit Narayan' },
+                    { id: 'ay6pwhXPNvo', fallbackIds: ['F73ADv7f2Ug', 'cNV5hLSa9H8'], title: 'Tujhe Dekha To Yeh Jaana Sanam', artist: 'Kumar Sanu, Lata Mangeshkar • DDLJ (1995)', searchQuery: 'Tujhe Dekha To Yeh Jaana Sanam' },
+                    { id: 'Swlik5Hfu-A', fallbackIds: ['CwTj1PTk5K0', 'W5lusYuAW0s'], title: 'Pardesi Pardesi Jaana Nahi', artist: 'Udit Narayan, Alka Yagnik • Raja Hindustani (1996)', searchQuery: 'Pardesi Pardesi Raja Hindustani' },
+                    { id: 'VMsn5-a45-s', fallbackIds: ['HyKuXycQXkg', '9u-r5W4WVO4'], title: 'Tip Tip Barsa Paani', artist: 'Udit Narayan, Alka Yagnik • Mohra (1994)', searchQuery: 'Tip Tip Barsa Paani Mohra' },
+                    { id: 'OF1JfBVMC-k', fallbackIds: ['bKZTnnFU9HA', '_1KqB_17dJE'], title: 'Kuch Kuch Hota Hai', artist: 'Udit Narayan, Alka Yagnik • KKHH (1998)', searchQuery: 'Kuch Kuch Hota Hai Udit Narayan' },
+                    { id: 'oJcE_QPFAng', fallbackIds: ['OF1JfBVMC-k', 'bKZTnnFU9HA'], title: 'Ladki Badi Anjani Hai', artist: 'Kumar Sanu, Alka Yagnik • KKHH (1998)', searchQuery: 'Ladki Badi Anjani Hai' },
+                    { id: 'Y2Zq3wSMATw', fallbackIds: ['3vQS80G2eec', '6Na7GSV9bVY'], title: 'Raja Ko Rani Se Pyar Ho Gaya', artist: 'Udit Narayan, Alka Yagnik • Akele Hum Akele Tum (1995)', searchQuery: 'Raja Ko Rani Se Pyar Ho Gaya' },
+                    { id: 'zYJp5qpn2Jo', fallbackIds: ['K-pX4qwtAxA', 'zaJPvEM7fVY'], title: 'Aaye Ho Meri Zindagi Mein', artist: 'Udit Narayan • Raja Hindustani (1996)', searchQuery: 'Aaye Ho Meri Zindagi Mein Udit Narayan' },
+                    { id: 'wH1sQAPuIX4', fallbackIds: ['pBVkxiAmAcc', 'x_elT6zkqN0'], title: 'Bholi Si Surat', artist: 'Udit Narayan, Lata Mangeshkar • Dil To Pagal Hai (1997)', searchQuery: 'Bholi Si Surat Dil To Pagal Hai' },
+                    { id: 'HaqGZcvbt1U', fallbackIds: ['2IVE5mu4Ie4', '3uTzfhqdcn8'], title: 'Dil Ne Yeh Kaha Hai Dil Se', artist: 'Udit Narayan, Alka Yagnik, Kumar Sanu • Dhadkan (2000)', searchQuery: 'Dil Ne Yeh Kaha Hai Dil Se Dhadkan' },
+                    { id: 'POTy3mDRcCE', fallbackIds: ['SBfPs-PMGTA', 'tnuwiLr_-nA'], title: 'Tum Dil Ki Dhadkan Mein', artist: 'Abhijeet, Alka Yagnik • Dhadkan (2000)', searchQuery: 'Tum Dil Ki Dhadkan Mein Abhijeet' },
+                    { id: 'F73ADv7f2Ug', fallbackIds: ['ay6pwhXPNvo', 'cNV5hLSa9H8'], title: 'Main Koi Aisa Geet Gaoon', artist: 'Abhijeet, Alka Yagnik • Yes Boss (1997)', searchQuery: 'Main Koi Aisa Geet Gaoon Abhijeet' },
+                    { id: 'CwTj1PTk5K0', fallbackIds: ['Swlik5Hfu-A', 'W5lusYuAW0s'], title: 'Baजीगर O Baazigar', artist: 'Kumar Sanu, Alka Yagnik • Baazigar (1993)', searchQuery: 'Baazigar O Baazigar Kumar Sanu' },
+                    { id: 'HyKuXycQXkg', fallbackIds: ['VMsn5-a45-s', '9u-r5W4WVO4'], title: 'Sochenge Tumhe Pyar', artist: 'Kumar Sanu • Deewana (1992)', searchQuery: 'Sochenge Tumhe Pyar Kumar Sanu' },
+                    { id: 'tnuwiLr_-nA', fallbackIds: ['SBfPs-PMGTA', 'POTy3mDRcCE'], title: 'Teri Umeed Tera Intezar', artist: 'Kumar Sanu, Sadhana Sargam • Deewana (1992)', searchQuery: 'Teri Umeed Tera Intezar Deewana' },
+                    { id: 'zaJPvEM7fVY', fallbackIds: ['K-pX4qwtAxA', 'zYJp5qpn2Jo'], title: 'Saजनजी Ghar Aaye', artist: 'Kumar Sanu, Alka Yagnik • Kuch Kuch Hota Hai (1998)', searchQuery: 'Saajanji Ghar Aaye Kuch Kuch Hota Hai' },
+                    { id: 'p1BqT2YBJgo', fallbackIds: ['Swlik5Hfu-A', 'CwTj1PTk5K0'], title: 'Kisi Din Banoongi Main Raja Ki Rani', artist: 'Udit Narayan, Alka Yagnik • Dulhe Raja (1998)', searchQuery: 'Kisi Din Banoongi Main Raja Ki Rani' },
+                    { id: 'g0s3TuOCU8k', fallbackIds: ['kb24AlYxSOc', '9LtVdxoGz9Q'], title: 'Nazar Ke Samne Jigar Ke Paas', artist: 'Kumar Sanu, Anuradha Paudwal • Aashiqui (1990)', searchQuery: 'Nazar Ke Samne Jigar Ke Paas Aashiqui' }
+                ]
+            }
+        ];
+
+        const TAPRI_QUOTES = [
+            '"भैया एक कड़क अदरक वाली कटिंग लगाना, चीनी थोड़ी कम और इलायची कूट के!"',
+            '"यार ये 90s का पूरा गाना सुनते ही स्कूल और कॉलेज के वो पुराने दिन याद आ जाते हैं..."',
+            '"आज नकद कल उधार — उधार प्रेम की कैंची है, कृपया मांग कर शर्मिंदा न करें!"',
+            '"बारिश का मौसम, टपरी की गरमा-गरम चाय और कुमार सानू की आवाज़ — ज़िन्दगी सेट है।"',
+            '"शर्मा जी, रेडियो की आवाज़ थोड़ी बढ़ाना, ये मेरा फेवरेट गाना आया है!"',
+            '"पूरी दुनिया के मसले एक तरफ़, और चाय की टपरी की पंचायत एक तरफ़।"',
+            '"एक कटिंग चाय और दो पारले-जी में जो सुकून है, वो महंगे कैफ़े में कहाँ!"'
+        ];
+
+        /**************************************************************
+         * 2. APPLICATION STATE
+         **************************************************************/
+        let stations = JSON.parse(JSON.stringify(DEFAULT_STATIONS));
+        try {
+            const saved = localStorage.getItem('tapri_stations_deluxe_v12');
+            if (saved) stations = JSON.parse(saved);
+        } catch (e) {}
+        // Force Track #1 of every station to ALWAYS be the Chai Ki Tapri Anthem on page open
+        stations.forEach(st => {
+            if (st.tracks && st.tracks.length > 0) {
+                st.tracks[0] = { ...DEFAULT_TAPRI_ANTHEM };
+            }
+        });
+
+        let currentStationIndex = 0;
+        let currentTrackIndex = 0;
+        let currentFallbackAttempt = 0;
+        let isPlaying = false;
+        let isMuted = false;
+        let isShuffle = false;
+        let musicVolume = 85;
+        let isVideoEnabled = true;
+        let progressTimer = null;
+        let quoteIndex = 0;
+        let sipCount = 0;
+
+        let ytPlayer = null;
+        let isYtApiReady = false;
+        let activeAudioMode = 'direct';
+        let streamRequestCounter = 0;
+        const streamUrlCache = {};
+
+        /**************************************************************
+         * 3. WEB AUDIO API TAPRI AMBIENCE ENGINE
+         **************************************************************/
+        class TapriAudioEngine {
+            constructor() {
+                this.ctx = null;
+                this.kettleGain = null;
+                this.rainGain = null;
+                this.crackleGain = null;
+                this.clinkVolume = 0.25;
+                this.clinkTimer = null;
+                this.isInitialized = false;
+            }
+
+            init() {
+                try {
+                    if (!this.ctx) {
+                        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                        this.ctx = new AudioCtx();
+                    }
+                    if (this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                    if (this.isInitialized) return;
+
+                    const bufferSize = this.ctx.sampleRate * 3;
+                    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                    const output = noiseBuffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+                    this.noiseBuffer = noiseBuffer;
+
+                    const kettleSource = this.ctx.createBufferSource();
+                    kettleSource.buffer = this.noiseBuffer;
+                    kettleSource.loop = true;
+
+                    const kettleFilter = this.ctx.createBiquadFilter();
+                    kettleFilter.type = 'bandpass';
+                    kettleFilter.frequency.value = 480;
+                    kettleFilter.Q.value = 2.0;
+
+                    this.kettleGain = this.ctx.createGain();
+                    this.kettleGain.gain.value = 0.35 * 0.08;
+                    kettleSource.connect(kettleFilter);
+                    kettleFilter.connect(this.kettleGain);
+                    this.kettleGain.connect(this.ctx.destination);
+                    kettleSource.start();
+
+                    const rainSource = this.ctx.createBufferSource();
+                    rainSource.buffer = this.noiseBuffer;
+                    rainSource.loop = true;
+
+                    const rainFilter = this.ctx.createBiquadFilter();
+                    rainFilter.type = 'lowpass';
+                    rainFilter.frequency.value = 1250;
+
+                    this.rainGain = this.ctx.createGain();
+                    this.rainGain.gain.value = 0;
+                    rainSource.connect(rainFilter);
+                    rainFilter.connect(this.rainGain);
+                    this.rainGain.connect(this.ctx.destination);
+                    rainSource.start();
+
+                    const crackleBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                    const crackleData = crackleBuffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        crackleData[i] = Math.random() > 0.997 ? (Math.random() * 2 - 1) * 0.65 : (Math.random() * 2 - 1) * 0.015;
+                    }
+                    const crackleSource = this.ctx.createBufferSource();
+                    crackleSource.buffer = crackleBuffer;
+                    crackleSource.loop = true;
+
+                    const crackleFilter = this.ctx.createBiquadFilter();
+                    crackleFilter.type = 'highpass';
+                    crackleFilter.frequency.value = 2000;
+
+                    this.crackleGain = this.ctx.createGain();
+                    this.crackleGain.gain.value = 0.15 * 0.08;
+                    crackleSource.connect(crackleFilter);
+                    crackleFilter.connect(this.crackleGain);
+                    this.crackleGain.connect(this.ctx.destination);
+                    crackleSource.start();
+
+                    this.clinkTimer = setInterval(() => {
+                        if (this.clinkVolume > 0.05 && Math.random() < 0.35) {
+                            this.triggerGlassClink();
+                        }
+                    }, 5500);
+
+                    this.isInitialized = true;
+                } catch (err) {
+                    console.warn('Ambience init deferred:', err);
+                }
+            }
+
+            triggerGlassClink(customBoost = 1) {
+                if (!this.ctx) return;
+                try {
+                    const now = this.ctx.currentTime;
+                    const osc1 = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    const baseFreq = 2650 + Math.random() * 350;
+                    osc1.type = 'sine';
+                    osc1.frequency.setValueAtTime(baseFreq, now);
+
+                    const vol = Math.min(0.15, this.clinkVolume * 0.12 * customBoost);
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.exponentialRampToValueAtTime(Math.max(0.002, vol), now + 0.01);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+
+                    osc1.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc1.start(now);
+                    osc1.stop(now + 0.24);
+                } catch (e) {}
+            }
+
+            triggerPourChaiSound() {
+                this.init();
+                if (!this.ctx || !this.noiseBuffer) return;
+                try {
+                    const now = this.ctx.currentTime;
+                    const src = this.ctx.createBufferSource();
+                    src.buffer = this.noiseBuffer;
+
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.setValueAtTime(650, now);
+                    filter.frequency.linearRampToValueAtTime(1250, now + 1.0);
+                    filter.Q.value = 3.5;
+
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(0.001, now);
+                    gain.gain.linearRampToValueAtTime(0.10, now + 0.2);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
+
+                    src.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    src.start(now);
+                    src.stop(now + 1.15);
+
+                    setTimeout(() => this.triggerGlassClink(1.3), 850);
+                } catch (e) {}
+            }
+
+            setKettleLevel(pct) {
+                if (this.kettleGain && this.ctx) {
+                    this.kettleGain.gain.setTargetAtTime((pct / 100) * 0.10, this.ctx.currentTime, 0.1);
+                }
+            }
+
+            setClinkLevel(pct) {
+                this.clinkVolume = pct / 100;
+            }
+
+            setRainLevel(pct) {
+                if (this.rainGain && this.ctx) {
+                    this.rainGain.gain.setTargetAtTime((pct / 100) * 0.18, this.ctx.currentTime, 0.1);
+                }
+                const rainVisual = document.getElementById('rainVisualContainer');
+                if (rainVisual) {
+                    rainVisual.style.opacity = pct > 5 ? Math.min(1, pct / 80) : 0;
+                }
+            }
+
+            setCrackleLevel(pct) {
+                if (this.crackleGain && this.ctx) {
+                    this.crackleGain.gain.setTargetAtTime((pct / 100) * 0.10, this.ctx.currentTime, 0.1);
+                }
+            }
+        }
+
+        const audioEngine = new TapriAudioEngine();
+
+        /**************************************************************
+         * 4. DELUXE SALON HYBRID YOUTUBE + FULL SONG STREAM ENGINE
+         **************************************************************/
+        const vocalAudio = document.getElementById('realVocalAudioPlayer');
+
+        function decryptDESUrl(encryptedBase64) {
+            try {
+                if (!window.CryptoJS || !encryptedBase64) return null;
+                const key = CryptoJS.enc.Utf8.parse('38346591');
+                const decrypted = CryptoJS.DES.decrypt(
+                    { ciphertext: CryptoJS.enc.Base64.parse(encryptedBase64) },
+                    key,
+                    { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 }
+                );
+                let url = decrypted.toString(CryptoJS.enc.Utf8);
+                if (!url || !url.startsWith('http')) return null;
+                return url.replace('_96.mp4', '_320.mp4').replace('_160.mp4', '_320.mp4').replace('http://', 'https://');
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function fetchDirectYouTubeAudioStream(videoId) {
+            if (!videoId || videoId.length !== 11) return null;
+            const pipedInstances = [
+                'https://pipedapi.kavin.rocks',
+                'https://pipedapi.tokhmi.xyz',
+                'https://pipedapi.moomoo.me',
+                'https://pipedapi.syncpundit.io'
+            ];
+            for (const base of pipedInstances) {
+                try {
+                    const controller = new AbortController();
+                    const timer = setTimeout(() => controller.abort(), 2600);
+                    const res = await fetch(`${base}/streams/${videoId}`, { signal: controller.signal });
+                    clearTimeout(timer);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+                    if (data && Array.isArray(data.audioStreams) && data.audioStreams.length > 0) {
+                        const m4a = data.audioStreams.find(s => (s.mimeType || '').includes('mp4') && s.url) || data.audioStreams[0];
+                        const vidStream = Array.isArray(data.videoStreams)
+                            ? data.videoStreams.find(v => (v.mimeType || '').includes('mp4') && v.url)
+                            : null;
+                        if (m4a && m4a.url) {
+                            return {
+                                url: m4a.url,
+                                videoUrl: vidStream ? vidStream.url : null,
+                                title: data.title,
+                                source: 'YouTube Direct Stream'
+                            };
+                        }
+                    }
+                } catch (e) {}
+            }
+            return null;
+        }
+
+        async function fetchFullLengthSongStream(queryText, candidateQueries = []) {
+            const allQueries = [queryText, ...(candidateQueries || [])].filter(Boolean);
+
+            for (const singleQuery of allQueries) {
+                const q = encodeURIComponent(singleQuery.trim());
+                const jsonApis = [
+                    `https://saavn.dev/api/search/songs?query=${q}&limit=5`,
+                    `https://jiosaavn-api-privatecvc2.vercel.app/search/songs?query=${q}&limit=5`,
+                    `https://saavn.sumit.co/api/search/songs?query=${q}&limit=5`
+                ];
+
+                for (const apiUrl of jsonApis) {
+                    try {
+                        const controller = new AbortController();
+                        const timer = setTimeout(() => controller.abort(), 3000);
+                        const res = await fetch(apiUrl, { signal: controller.signal });
+                        clearTimeout(timer);
+                        if (!res.ok) continue;
+                        const json = await res.json();
+                        const results = json?.data?.results || json?.results || [];
+                        for (const item of results) {
+                            const dur = parseInt(item.duration || 240, 10);
+                            if (dur < 60) continue;
+                            const dlArr = item.downloadUrl || item.download_url || [];
+                            if (Array.isArray(dlArr) && dlArr.length > 0) {
+                                const best = dlArr[dlArr.length - 1];
+                                const link = typeof best === 'string' ? best : (best.url || best.link);
+                                if (link && link.startsWith('http')) {
+                                    return { url: link.replace('http://', 'https://'), source: 'Chai Tapri Full Song' };
+                                }
+                            }
+                        }
+                    } catch (e) {}
+                }
+
+                const targetSaavn = `https://www.jiosaavn.com/api.php?__call=search.getResults&_format=json&_marker=0&n=5&p=1&q=${q}`;
+                const proxies = [
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(targetSaavn)}`,
+                    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetSaavn)}`
+                ];
+                for (const proxyUrl of proxies) {
+                    try {
+                        const controller = new AbortController();
+                        const timer = setTimeout(() => controller.abort(), 3200);
+                        const res = await fetch(proxyUrl, { signal: controller.signal });
+                        clearTimeout(timer);
+                        if (!res.ok) continue;
+                        const data = await res.json();
+                        const list = data?.results || [];
+                        for (const song of list) {
+                            const enc = song.encrypted_media_url || song?.more_info?.encrypted_media_url;
+                            const dec = decryptDESUrl(enc);
+                            if (dec) {
+                                return { url: dec, source: 'Chai Tapri 320kbps Full Song' };
+                            }
+                        }
+                    } catch (e) {}
+                }
+            }
+            return null;
+        }
+
+        let tvFrameInterval = null;
+        let tvFrameIndex = 0;
+
+        function startTapriTvSceneAnimation(videoId, videoStreamUrl = null, hasOwnAudio = false) {
+            const directVid = document.getElementById('tapriDirectVideoPlayer');
+            const slideImg = document.getElementById('tvBroadcastSlideImg');
+
+            clearInterval(tvFrameInterval);
+
+            if (videoStreamUrl && directVid) {
+                directVid.src = videoStreamUrl;
+                // Keep muted only when vocalAudio is playing the main stream so there is no double-echo,
+                // or unmute if the video stream itself carries the audio
+                directVid.muted = !hasOwnAudio || isMuted;
+                directVid.volume = isMuted ? 0 : (musicVolume / 100);
+                directVid.classList.remove('hidden');
+                directVid.play().catch(() => {
+                    directVid.muted = true;
+                    directVid.play().catch(() => directVid.classList.add('hidden'));
+                });
+            } else if (directVid) {
+                directVid.pause();
+                directVid.classList.add('hidden');
+            }
+
+            if (slideImg && videoId) {
+                const frames = [
+                    `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+                    `https://i.ytimg.com/vi/${videoId}/hq1.jpg`,
+                    `https://i.ytimg.com/vi/${videoId}/hq2.jpg`,
+                    `https://i.ytimg.com/vi/${videoId}/hq3.jpg`
+                ];
+                tvFrameIndex = 0;
+                slideImg.src = frames[0];
+                tvFrameInterval = setInterval(() => {
+                    if (!isPlaying) return;
+                    tvFrameIndex = (tvFrameIndex + 1) % frames.length;
+                    slideImg.src = frames[tvFrameIndex];
+                }, 3200);
+            }
+        }
+
+        async function playYouTubeTrackNow(track) {
+            const reqId = ++streamRequestCounter;
+            const activeVideoId = track.id;
+            updateVisualThumbnails(activeVideoId);
+
+            document.getElementById('ytStatusIndicator').textContent = '● TUNING...';
+            document.getElementById('tvSongQualityBadge').textContent = '⏳ LOADING...';
+            document.getElementById('audioSourceStatus').textContent = `🎵 Loading: ${track.title}...`;
+
+            const cacheKey = `${track.id}_${track.title}`;
+            let resolved = streamUrlCache[cacheKey];
+
+            if (!resolved) {
+                if (track.isAnthem || currentTrackIndex === 0) {
+                    // Strictly resolve "Chai Ki Tapri Pe" first for the mandatory opening song
+                    for (const vid of [track.id, ...(track.fallbackIds || [])]) {
+                        const ytDirect = await fetchDirectYouTubeAudioStream(vid);
+                        if (ytDirect && ytDirect.url) {
+                            resolved = ytDirect;
+                            break;
+                        }
+                    }
+                    if (!resolved) {
+                        resolved = await fetchFullLengthSongStream('Chai Ki Tapri Pe', [
+                            'Meri Chai Ki Tapri Pe',
+                            'Chai Ki Tapri',
+                            'Ek Garam Chai Ki Pyali Ho Har Dil Jo Pyar Karega'
+                        ]);
+                    }
+                } else {
+                    const searchStr = track.searchQuery || `${track.title.replace(/\(.*?\)|Anthem|चाय की टपरी/gi, '').trim()} ${track.artist.split('•')[0].trim()}`;
+                    const [ytDirect, fullSong] = await Promise.all([
+                        fetchDirectYouTubeAudioStream(activeVideoId),
+                        fetchFullLengthSongStream(searchStr, track.searchTerms || [])
+                    ]);
+                    resolved = fullSong || ytDirect;
+                }
+
+                if (resolved) {
+                    streamUrlCache[cacheKey] = resolved;
+                }
+            }
+
+            if (reqId !== streamRequestCounter) return;
+
+            startTapriTvSceneAnimation(activeVideoId, resolved ? resolved.videoUrl : null, false);
+
+            if (resolved && resolved.url) {
+                activeAudioMode = 'direct';
+                vocalAudio.src = resolved.url;
+                vocalAudio.volume = isMuted ? 0 : (musicVolume / 100);
+                try {
+                    await vocalAudio.play();
+                    setPlayingUI(true);
+                    document.getElementById('ytStatusIndicator').textContent = '● TV + AUDIO ON AIR';
+                    document.getElementById('tvSongQualityBadge').textContent = '● PLAYING NOW';
+                    document.getElementById('audioSourceStatus').textContent = `📺 TV & Speaker: ${track.title}`;
+                    return;
+                } catch (playErr) {
+                    console.warn('Direct play deferred:', playErr);
+                }
+            }
+        }
+
+        vocalAudio.addEventListener('playing', () => {
+            setPlayingUI(true);
+            document.getElementById('ytStatusIndicator').textContent = '● ON AIR';
+            document.getElementById('tvSongQualityBadge').textContent = '● PLAYING NOW';
+        });
+
+        vocalAudio.addEventListener('pause', () => {
+            if (activeAudioMode === 'direct' && !vocalAudio.ended && vocalAudio.currentTime > 0) {
+                setPlayingUI(false);
+            }
+        });
+
+        vocalAudio.addEventListener('ended', () => {
+            playNextTrack();
+        });
+
+        function loadYouTubeIframeAPI() {
+            if (window.YT && window.YT.Player) {
+                initYouTubePlayer();
+                return;
+            }
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        window.onYouTubeIframeAPIReady = function () {
+            initYouTubePlayer();
+        };
+
+        function initYouTubePlayer() {
+            if (ytPlayer) return;
+            const initialTrack = getCurrentTrack();
+
+            ytPlayer = new YT.Player('ytPlayerMount', {
+                width: '100%',
+                height: '100%',
+                videoId: initialTrack.id,
+                playerVars: {
+                    autoplay: 0,
+                    controls: 1,
+                    rel: 0,
+                    modestbranding: 1,
+                    playsinline: 1
+                },
+                events: {
+                    onReady: (event) => {
+                        isYtApiReady = true;
+                        try {
+                            const iframeEl = event.target.getIframe();
+                            if (iframeEl) {
+                                iframeEl.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+                                iframeEl.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                            }
+                        } catch (e) {}
+                    },
+                    onError: () => {
+                        if (isVideoEnabled) {
+                            isVideoEnabled = false;
+                            syncTvVideoModeUI();
+                            showToast('📻 Video switched to clean Tapri Visualizer mode (Audio continues playing!)');
+                        }
+                    }
+                }
+            });
+        }
+
+        function tryNextEmbeddableYouTubeUpload() {
+            const track = getCurrentTrack();
+            const candidates = [track.id, ...(track.fallbackIds || [])].filter(Boolean);
+            currentFallbackAttempt = (currentFallbackAttempt + 1) % candidates.length;
+            track.id = candidates[currentFallbackAttempt];
+            delete streamUrlCache[`${track.id}_${track.title}`];
+            playYouTubeTrackNow(track);
+            showToast(`🔄 Switched to alternate YouTube link (${track.id})`);
+        }
+
+        function updateVisualThumbnails(videoId) {
+            const ytWatchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            const ytThumbUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+            const coverThumb = document.getElementById('tvCoverThumb');
+            const bgThumb = document.getElementById('tvBgYtThumb');
+            const broadcastImg = document.getElementById('tvBroadcastSlideImg');
+            const directLink = document.getElementById('openDirectYtLink');
+
+            if (coverThumb) coverThumb.src = ytThumbUrl;
+            if (bgThumb) bgThumb.src = ytThumbUrl;
+            if (broadcastImg) broadcastImg.src = ytThumbUrl;
+            if (directLink) directLink.href = ytWatchUrl;
+        }
+
+        async function fetchYouTubeVideoMeta(videoId) {
+            if (!videoId || videoId.length !== 11) return null;
+            const ytUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            const endpoints = [
+                `https://noembed.com/embed?url=${encodeURIComponent(ytUrl)}`,
+                `https://www.youtube.com/oembed?url=${encodeURIComponent(ytUrl)}&format=json`
+            ];
+            for (const ep of endpoints) {
+                try {
+                    const res = await fetch(ep);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+                    if (data && data.title) {
+                        return {
+                            title: data.title,
+                            author: data.author_name || 'YouTube Channel'
+                        };
+                    }
+                } catch (e) {}
+            }
+            return null;
+        }
+
+        function syncTvVideoModeUI() {
+            const track = getCurrentTrack();
+            const visScreen = document.getElementById('tvVisualizerScreen');
+            const switchBtn = document.getElementById('tvVideoSwitchBtn');
+            const headerTvLabel = document.getElementById('tvBtnLabel');
+
+            document.getElementById('tvScreenSongTitle').textContent = track.title;
+            document.getElementById('tvScreenArtist').textContent = track.artist;
+
+            const bTitle = document.getElementById('tvBroadcastTitle');
+            const bArtist = document.getElementById('tvBroadcastArtist');
+            if (bTitle) bTitle.textContent = track.title;
+            if (bArtist) bArtist.textContent = track.artist;
+
+            updateVisualThumbnails(track.id);
+
+            if (isVideoEnabled) {
+                visScreen.classList.add('hidden');
+                switchBtn.textContent = 'ON (LIVE TV)';
+                switchBtn.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-amber-500 text-stone-950 hover:bg-amber-400 transition cursor-pointer';
+                headerTvLabel.textContent = 'Tapri TV: ON';
+                startTapriTvSceneAnimation(track.id);
+            } else {
+                visScreen.classList.remove('hidden');
+                switchBtn.textContent = 'OFF (Vinyl Mode)';
+                switchBtn.className = 'px-2 py-0.5 rounded text-[9px] font-bold bg-stone-800 text-amber-300 hover:bg-amber-500 hover:text-stone-950 transition cursor-pointer';
+                headerTvLabel.textContent = 'Tapri TV: OFF';
+            }
+        }
+
+        /**************************************************************
+         * 5. PLAYER STATE & TRACK NAVIGATION HELPERS
+         **************************************************************/
+        function getCurrentStation() {
+            return stations[currentStationIndex] || stations[0];
+        }
+
+        function getCurrentTrack() {
+            const st = getCurrentStation();
+            return st.tracks[currentTrackIndex] || st.tracks[0];
+        }
+
+        function updateNowPlayingUI() {
+            const station = getCurrentStation();
+            const track = getCurrentTrack();
+
+            document.getElementById('cassetteAlbumBadge').textContent = station.name.split('(')[0].trim();
+            document.getElementById('nowPlayingTitle').textContent = track.title;
+            document.getElementById('nowPlayingArtist').textContent = track.artist;
+            document.getElementById('trackCounterLabel').textContent = `Track ${currentTrackIndex + 1}/${station.tracks.length} • 105 Songs`;
+
+            const anthemBadge = document.getElementById('anthemTagBadge');
+            if (currentTrackIndex === 0 || track.isAnthem) {
+                anthemBadge.classList.remove('hidden');
+                anthemBadge.textContent = '★ FIRST SONG • CHAI KI TAPRI';
+            } else {
+                anthemBadge.classList.remove('hidden');
+                anthemBadge.textContent = '📻 90s/2000s TAPRI HIT';
+            }
+
+            syncTvVideoModeUI();
+            renderStationList();
+            renderModalTracklist();
+        }
+
+        function setPlayingUI(playingState) {
+            isPlaying = playingState;
+            const deckRoot = document.getElementById('playerDeckRoot');
+            const icon = document.getElementById('playPauseIcon');
+            const text = document.getElementById('playPauseText');
+
+            if (isPlaying) {
+                deckRoot.classList.add('is-playing');
+                icon.className = 'fa-solid fa-pause';
+                text.textContent = 'PAUSE';
+            } else {
+                deckRoot.classList.remove('is-playing');
+                icon.className = 'fa-solid fa-play';
+                text.textContent = 'PLAY';
+            }
+        }
+
+        function loadAndPlayCurrentTrack() {
+            audioEngine.init();
+            const track = getCurrentTrack();
+            setPlayingUI(true);
+            updateNowPlayingUI();
+            playYouTubeTrackNow(track);
+        }
+
+        function togglePlayPause() {
+            audioEngine.init();
+            if (activeAudioMode === 'direct') {
+                if (!vocalAudio.src) {
+                    loadAndPlayCurrentTrack();
+                    return;
+                }
+                if (!vocalAudio.paused) {
+                    vocalAudio.pause();
+                    setPlayingUI(false);
+                } else {
+                    vocalAudio.play().then(() => setPlayingUI(true)).catch(() => loadAndPlayCurrentTrack());
+                }
+                return;
+            }
+
+            if (!isYtApiReady || !ytPlayer) {
+                loadAndPlayCurrentTrack();
+                return;
+            }
+            const state = ytPlayer.getPlayerState ? ytPlayer.getPlayerState() : -1;
+            if (state === 1) {
+                ytPlayer.pauseVideo();
+                setPlayingUI(false);
+            } else {
+                ytPlayer.unMute();
+                ytPlayer.setVolume(isMuted ? 0 : musicVolume);
+                ytPlayer.playVideo();
+                setPlayingUI(true);
+            }
+        }
+
+        function playNextTrack() {
+            const station = getCurrentStation();
+            if (isShuffle && station.tracks.length > 2) {
+                let nextIdx = currentTrackIndex;
+                while (nextIdx === currentTrackIndex) {
+                    nextIdx = Math.floor(Math.random() * station.tracks.length);
+                }
+                currentTrackIndex = nextIdx;
+            } else {
+                currentTrackIndex = (currentTrackIndex + 1) % station.tracks.length;
+            }
+            loadAndPlayCurrentTrack();
+            showToast(`अब बज रहा है: ${getCurrentTrack().title}`);
+        }
+
+        function playPrevTrack() {
+            const station = getCurrentStation();
+            currentTrackIndex = (currentTrackIndex - 1 + station.tracks.length) % station.tracks.length;
+            loadAndPlayCurrentTrack();
+            showToast(`अब बज रहा है: ${getCurrentTrack().title}`);
+        }
+
+        function playFirstSongTapriAnthem() {
+            currentTrackIndex = 0;
+            loadAndPlayCurrentTrack();
+            showToast('☕ पहला गाना "Chai Ki Tapri" शुरू हो गया है!');
+        }
+
+        window.enterTapriNow = function () {
+            const overlay = document.getElementById('welcomeOverlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+            audioEngine.init();
+            audioEngine.triggerPourChaiSound();
+            currentTrackIndex = 0;
+            loadAndPlayCurrentTrack();
+            showToast('☕ स्वागत है! गरमा-गरम चाय और टपरी रेडियो शुरू हो गया है!');
+        };
+
+        /**************************************************************
+         * 6. UI RENDERERS & INTERACTIVE LISTENERS
+         **************************************************************/
+        function renderStationList() {
+            const container = document.getElementById('stationListContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            stations.forEach((st, idx) => {
+                const isSelected = idx === currentStationIndex;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `w-full text-left p-2.5 rounded-xl border transition flex items-center justify-between gap-2 cursor-pointer ${
+                    isSelected
+                        ? 'bg-gradient-to-r from-amber-500/30 to-orange-600/20 border-amber-400 shadow'
+                        : 'bg-black/30 hover:bg-black/50 border-amber-900/50 text-amber-200/80'
+                }`;
+                btn.innerHTML = `
+                    <div class="min-w-0">
+                        <div class="font-bold text-xs sm:text-sm text-amber-100 truncate">${st.name}</div>
+                        <div class="text-[11px] text-amber-300/75 truncate">${st.subtitle}</div>
+                    </div>
+                    <span class="shrink-0 text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                        isSelected ? 'bg-amber-400 text-stone-950 font-bold' : 'bg-stone-900 text-amber-400'
+                    }">
+                        ${isSelected ? 'ON AIR' : st.tracks.length + ' Tracks'}
+                    </span>
+                `;
+                btn.addEventListener('click', () => {
+                    currentStationIndex = idx;
+                    currentTrackIndex = 0;
+                    loadAndPlayCurrentTrack();
+                    showToast(`कैसेट बदली गई: ${st.name}`);
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        function renderModalTracklist() {
+            const container = document.getElementById('modalTracklistContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            const station = getCurrentStation();
+
+            station.tracks.forEach((tr, idx) => {
+                const isCurrent = idx === currentTrackIndex;
+                const row = document.createElement('div');
+                row.className = `p-2.5 rounded-xl border flex items-center justify-between gap-3 transition cursor-pointer ${
+                    isCurrent
+                        ? 'bg-amber-500/25 border-amber-400 text-amber-100'
+                        : 'bg-stone-900/70 hover:bg-stone-900 border-amber-900/50 text-amber-200/90'
+                }`;
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 min-w-0">
+                        <span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono ${
+                            isCurrent ? 'bg-amber-400 text-stone-950 font-bold' : 'bg-stone-800 text-amber-400'
+                        }">
+                            ${idx === 0 ? '☕' : idx + 1}
+                        </span>
+                        <div class="min-w-0">
+                            <div class="font-bold text-xs sm:text-sm truncate">
+                                ${tr.title} ${idx === 0 ? '<span class="text-[10px] bg-amber-400 text-stone-950 px-1.5 py-0.2 rounded ml-1">First Song</span>' : ''}
+                            </div>
+                            <div class="text-[11px] text-amber-300/70 truncate">${tr.artist}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-400 hover:text-stone-950 text-amber-300 text-xs font-medium transition">
+                        ${isCurrent && isPlaying ? 'Playing' : 'Play'}
+                    </button>
+                `;
+                row.addEventListener('click', () => {
+                    currentTrackIndex = idx;
+                    loadAndPlayCurrentTrack();
+                });
+                container.appendChild(row);
+            });
+        }
+
+        function extractYouTubeId(input) {
+            const trimmed = (input || '').trim();
+            if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) {
+                return trimmed;
+            }
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+            const match = trimmed.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : trimmed;
+        }
+
+        function formatSeconds(sec) {
+            const s = Math.max(0, Math.floor(sec || 0));
+            const mins = Math.floor(s / 60);
+            const rem = s % 60;
+            return `${mins}:${rem < 10 ? '0' : ''}${rem}`;
+        }
+
+        function showToast(msg) {
+            const banner = document.getElementById('toastBanner');
+            const textEl = document.getElementById('toastMessage');
+            if (!banner || !textEl) return;
+            textEl.textContent = msg;
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                banner.classList.add('hidden');
+                banner.classList.remove('flex');
+            }, 3200);
+        }
+
+        function createRainDrops() {
+            const container = document.getElementById('rainVisualContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            for (let i = 0; i < 42; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'rain-drop';
+                drop.style.left = `${Math.random() * 100}vw`;
+                drop.style.animationDuration = `${0.45 + Math.random() * 0.4}s`;
+                drop.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(drop);
+            }
+        }
+
+        /**************************************************************
+         * 7. INITIALIZATION & CLEAN EVENT BINDINGS
+         **************************************************************/
+        window.addEventListener('DOMContentLoaded', () => {
+            createRainDrops();
+            updateNowPlayingUI();
+            loadYouTubeIframeAPI();
+
+            // Pre-warm the mandatory first song ("Chai Ki Tapri Pe") immediately so it plays at 0ms when user enters
+            const firstSong = getCurrentTrack();
+            fetchFullLengthSongStream('Chai Ki Tapri Pe', [
+                'Meri Chai Ki Tapri Pe',
+                'Chai Ki Tapri',
+                'Ek Garam Chai Ki Pyali Ho Har Dil Jo Pyar Karega'
+            ]).then(res => {
+                if (res && res.url) {
+                    streamUrlCache[`${firstSong.id}_${firstSong.title}`] = res;
+                    if (!vocalAudio.src) {
+                        vocalAudio.src = res.url;
+                    }
+                }
+            }).catch(() => {});
+
+            // Clicking on the TV screen or TV Sound button directly unmutes/toggles TV audio
+            const tvContainerEl = document.getElementById('tvYoutubeContainer');
+            if (tvContainerEl) {
+                tvContainerEl.addEventListener('click', () => {
+                    isMuted = false;
+                    document.getElementById('volumeIcon').className = 'fa-solid fa-volume-high';
+                    const tvSoundIcon = document.getElementById('tvSoundIcon');
+                    const tvSoundLabel = document.getElementById('tvSoundLabel');
+                    if (tvSoundIcon) tvSoundIcon.className = 'fa-solid fa-volume-high';
+                    if (tvSoundLabel) tvSoundLabel.textContent = 'TV SOUND: ON';
+                    if (vocalAudio) {
+                        vocalAudio.volume = musicVolume / 100;
+                        if (vocalAudio.paused) {
+                            loadAndPlayCurrentTrack();
+                        }
+                    }
+                    showToast('📺 BPL Tapri TV Sound & Audio Synced!');
+                });
+            }
+
+            // Live Clock & Tapri Visitors Counter
+            setInterval(() => {
+                const now = new Date();
+                const clockEl = document.getElementById('tapriClock');
+                if (clockEl) {
+                    clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+                const countEl = document.getElementById('liveListenersCount');
+                if (countEl && Math.random() > 0.6) {
+                    const current = parseInt(countEl.textContent || '145', 10);
+                    const delta = Math.floor(Math.random() * 5) - 2;
+                    countEl.textContent = Math.max(110, current + delta);
+                }
+            }, 4000);
+
+            // Real Progress Bar Updater Loop
+            progressTimer = setInterval(() => {
+                if (!isPlaying) return;
+                if (activeAudioMode === 'direct' && vocalAudio && vocalAudio.duration > 0) {
+                    const cur = vocalAudio.currentTime || 0;
+                    const dur = vocalAudio.duration || 0;
+                    document.getElementById('currentTimeLabel').textContent = formatSeconds(cur);
+                    document.getElementById('durationTimeLabel').textContent = formatSeconds(dur);
+                    document.getElementById('progressSlider').value = (cur / dur) * 100;
+                    return;
+                }
+                if (isYtApiReady && ytPlayer) {
+                    try {
+                        const cur = ytPlayer.getCurrentTime ? ytPlayer.getCurrentTime() : 0;
+                        const dur = ytPlayer.getDuration ? ytPlayer.getDuration() : 0;
+                        if (dur > 0) {
+                            document.getElementById('currentTimeLabel').textContent = formatSeconds(cur);
+                            document.getElementById('durationTimeLabel').textContent = formatSeconds(dur);
+                            document.getElementById('progressSlider').value = (cur / dur) * 100;
+                        }
+                    } catch (e) {}
+                }
+            }, 500);
+
+            // Player Controls
+            document.getElementById('playPauseBtn').addEventListener('click', togglePlayPause);
+            document.getElementById('nextTrackBtn').addEventListener('click', playNextTrack);
+            document.getElementById('prevTrackBtn').addEventListener('click', playPrevTrack);
+            document.getElementById('replayFirstSongBtn').addEventListener('click', playFirstSongTapriAnthem);
+            document.getElementById('playAnthemQuickBtn').addEventListener('click', playFirstSongTapriAnthem);
+            document.getElementById('tryAltYtBtn').addEventListener('click', tryNextEmbeddableYouTubeUpload);
+
+            // Shuffle Mode Button
+            document.getElementById('shuffleToggleBtn').addEventListener('click', () => {
+                isShuffle = !isShuffle;
+                const btn = document.getElementById('shuffleToggleBtn');
+                const label = document.getElementById('shuffleBtnLabel');
+                if (isShuffle) {
+                    label.textContent = 'Shuffle: ON';
+                    btn.classList.add('bg-amber-600', 'text-stone-950');
+                    btn.classList.remove('bg-stone-900', 'text-amber-300');
+                    showToast('🔀 Shuffle Mode ON: 105 गानों में से रैंडम गाने बजेंगे!');
+                } else {
+                    label.textContent = 'Shuffle: OFF';
+                    btn.classList.remove('bg-amber-600', 'text-stone-950');
+                    btn.classList.add('bg-stone-900', 'text-amber-300');
+                    showToast('➡️ Shuffle Mode OFF');
+                }
+            });
+
+            // Progress Scrubber
+            document.getElementById('progressSlider').addEventListener('input', (e) => {
+                const pct = parseFloat(e.target.value);
+                if (activeAudioMode === 'direct' && vocalAudio && vocalAudio.duration > 0) {
+                    vocalAudio.currentTime = (pct / 100) * vocalAudio.duration;
+                    return;
+                }
+                if (isYtApiReady && ytPlayer && typeof ytPlayer.getDuration === 'function') {
+                    const dur = ytPlayer.getDuration();
+                    if (dur > 0) {
+                        ytPlayer.seekTo((pct / 100) * dur, true);
+                    }
+                }
+            });
+
+            // Music Volume Slider & Mute
+            document.getElementById('musicVolumeSlider').addEventListener('input', (e) => {
+                musicVolume = parseInt(e.target.value, 10);
+                document.getElementById('musicVolumeVal').textContent = `${musicVolume}%`;
+                if (vocalAudio) {
+                    vocalAudio.volume = isMuted ? 0 : (musicVolume / 100);
+                }
+                if (isYtApiReady && ytPlayer && typeof ytPlayer.setVolume === 'function') {
+                    ytPlayer.setVolume(isMuted ? 0 : musicVolume);
+                }
+            });
+
+            document.getElementById('muteToggleBtn').addEventListener('click', () => {
+                isMuted = !isMuted;
+                const icon = document.getElementById('volumeIcon');
+                if (isMuted) {
+                    icon.className = 'fa-solid fa-volume-xmark text-red-400';
+                    if (vocalAudio) vocalAudio.volume = 0;
+                    if (isYtApiReady && ytPlayer) ytPlayer.mute();
+                } else {
+                    icon.className = 'fa-solid fa-volume-high';
+                    if (vocalAudio) vocalAudio.volume = musicVolume / 100;
+                    if (isYtApiReady && ytPlayer && activeAudioMode === 'yt_iframe') {
+                        ytPlayer.unMute();
+                        ytPlayer.setVolume(musicVolume);
+                    }
+                }
+            });
+
+            // Ambient Sound Mixer Sliders
+            document.getElementById('kettleSlider').addEventListener('input', (e) => {
+                audioEngine.init();
+                const val = parseInt(e.target.value, 10);
+                document.getElementById('kettleVal').textContent = `${val}%`;
+                audioEngine.setKettleLevel(val);
+            });
+
+            document.getElementById('clinkSlider').addEventListener('input', (e) => {
+                audioEngine.init();
+                const val = parseInt(e.target.value, 10);
+                document.getElementById('clinkVal').textContent = `${val}%`;
+                audioEngine.setClinkLevel(val);
+            });
+
+            document.getElementById('rainSlider').addEventListener('input', (e) => {
+                audioEngine.init();
+                const val = parseInt(e.target.value, 10);
+                document.getElementById('rainVal').textContent = `${val}%`;
+                audioEngine.setRainLevel(val);
+            });
+
+            document.getElementById('crackleSlider').addEventListener('input', (e) => {
+                audioEngine.init();
+                const val = parseInt(e.target.value, 10);
+                document.getElementById('crackleVal').textContent = `${val}%`;
+                audioEngine.setCrackleLevel(val);
+            });
+
+            // Auto Cozy Monsoon Preset Button
+            document.getElementById('presetCozyBtn').addEventListener('click', () => {
+                audioEngine.init();
+                document.getElementById('kettleSlider').value = 50;
+                document.getElementById('kettleVal').textContent = '50%';
+                audioEngine.setKettleLevel(50);
+
+                document.getElementById('clinkSlider').value = 35;
+                document.getElementById('clinkVal').textContent = '35%';
+                audioEngine.setClinkLevel(35);
+
+                document.getElementById('rainSlider').value = 60;
+                document.getElementById('rainVal').textContent = '60%';
+                audioEngine.setRainLevel(60);
+
+                document.getElementById('crackleSlider').value = 25;
+                document.getElementById('crackleVal').textContent = '25%';
+                audioEngine.setCrackleLevel(25);
+
+                showToast('🌧️ बाहरी बारिश, उबलती केतली और टपरी माहौल सेट हो गया!');
+            });
+
+            // Interactive Kettle Pour & Quotes
+            document.getElementById('pourChaiTrigger').addEventListener('click', () => {
+                sipCount++;
+                audioEngine.triggerPourChaiSound();
+                document.getElementById('chaiSipCounter').textContent = `कटिंग चाय प्याली #${sipCount} तैयार! ☕`;
+                showToast(`गरमा-गरम कटिंग चाय प्याली #${sipCount} परोसी गई!`);
+            });
+
+            document.getElementById('nextQuoteBtn').addEventListener('click', () => {
+                quoteIndex = (quoteIndex + 1) % TAPRI_QUOTES.length;
+                document.getElementById('tapriQuoteText').textContent = TAPRI_QUOTES[quoteIndex];
+                audioEngine.init();
+                audioEngine.triggerGlassClink();
+            });
+
+            // Toggle YouTube Video Cover ON / OFF
+            function toggleYouTubeVideoMode() {
+                isVideoEnabled = !isVideoEnabled;
+                const wrapper = document.getElementById('tvContainerWrapper');
+                if (wrapper.classList.contains('hidden')) {
+                    wrapper.classList.remove('hidden');
+                }
+                syncTvVideoModeUI();
+                showToast(isVideoEnabled
+                    ? '📺 YouTube Video ON'
+                    : '📻 Audio Mode ON (Zero Configuration Error!)');
+            }
+
+            document.getElementById('tvVideoSwitchBtn').addEventListener('click', toggleYouTubeVideoMode);
+            document.getElementById('turnOnVideoInlineBtn').addEventListener('click', toggleYouTubeVideoMode);
+            document.getElementById('toggleTvBtn').addEventListener('click', toggleYouTubeVideoMode);
+
+            document.getElementById('hideTvBoxBtn').addEventListener('click', () => {
+                const wrapper = document.getElementById('tvContainerWrapper');
+                wrapper.classList.toggle('hidden');
+            });
+
+            // Playlist & Custom Track Modal
+            const modal = document.getElementById('playlistModal');
+            document.getElementById('openPlaylistModalBtn').addEventListener('click', () => {
+                renderModalTracklist();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            });
+
+            document.getElementById('closePlaylistModalBtn').addEventListener('click', () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+
+            document.getElementById('addCustomTrackBtn').addEventListener('click', async () => {
+                const titleInput = document.getElementById('customSongTitleInput');
+                const urlInput = document.getElementById('customSongUrlInput');
+                const rawUrl = urlInput.value.trim();
+                const vidId = extractYouTubeId(rawUrl);
+                let newTitle = titleInput.value.trim();
+                let artistLabel = 'YouTube Custom Song';
+
+                if (!vidId || vidId.length !== 11) {
+                    document.getElementById('modalFeedbackMsg').textContent = 'कृपया एक सही YouTube Link या 11-अक्षरों का Video ID डालें!';
+                    return;
+                }
+
+                document.getElementById('modalFeedbackMsg').textContent = '⏳ YouTube से गाने का नाम सिंक हो रहा है...';
+
+                if (!newTitle) {
+                    const meta = await fetchYouTubeVideoMeta(vidId);
+                    if (meta && meta.title) {
+                        newTitle = meta.title;
+                        artistLabel = `${meta.author} • YouTube`;
+                    } else {
+                        newTitle = `YouTube Song (${vidId})`;
+                    }
+                }
+
+                const newTrackObj = {
+                    id: vidId,
+                    fallbackIds: ['kb24AlYxSOc'],
+                    title: newTitle,
+                    artist: artistLabel,
+                    searchQuery: newTitle
+                };
+
+                stations[currentStationIndex].tracks.push(newTrackObj);
+                try {
+                    localStorage.setItem('tapri_stations_deluxe_v9', JSON.stringify(stations));
+                } catch (e) {}
+
+                titleInput.value = '';
+                urlInput.value = '';
+                currentTrackIndex = stations[currentStationIndex].tracks.length - 1;
+                loadAndPlayCurrentTrack();
+                document.getElementById('modalFeedbackMsg').textContent = `✓ "${newTitle}" जोड़ दिया गया और अभी बज रहा है!`;
+                renderModalTracklist();
+                renderStationList();
+            });
+
+            document.getElementById('setAsFirstSongBtn').addEventListener('click', async () => {
+                const titleInput = document.getElementById('customSongTitleInput');
+                const urlInput = document.getElementById('customSongUrlInput');
+                const rawUrl = urlInput.value.trim();
+                const vidId = extractYouTubeId(rawUrl);
+                let newTitle = titleInput.value.trim();
+
+                if (!vidId || vidId.length !== 11) {
+                    document.getElementById('modalFeedbackMsg').textContent = 'कृपया पहले एक सही YouTube URL पेस्ट करें!';
+                    return;
+                }
+
+                if (!newTitle) {
+                    const meta = await fetchYouTubeVideoMeta(vidId);
+                    if (meta && meta.title) newTitle = meta.title;
+                }
+                if (!newTitle) newTitle = 'Chai Ki Tapri Pe';
+
+                stations.forEach(st => {
+                    st.tracks[0] = {
+                        id: vidId,
+                        fallbackIds: ['kb24AlYxSOc', '9LtVdxoGz9Q', 'v08MF5mbBLk'],
+                        title: newTitle,
+                        artist: 'Tapri Opening Anthem • YouTube',
+                        searchQuery: newTitle,
+                        isAnthem: true
+                    };
+                });
+                try {
+                    localStorage.setItem('tapri_stations_deluxe_v9', JSON.stringify(stations));
+                } catch (e) {}
+                currentTrackIndex = 0;
+                loadAndPlayCurrentTrack();
+                document.getElementById('modalFeedbackMsg').textContent = `★ "${newTitle}" अब वेबसाइट का पहला गाना बन गया है!`;
+            });
+
+            document.getElementById('resetDefaultTracksBtn').addEventListener('click', () => {
+                try {
+                    localStorage.removeItem('tapri_stations_deluxe_v9');
+                } catch (e) {}
+                stations = JSON.parse(JSON.stringify(DEFAULT_STATIONS));
+                currentTrackIndex = 0;
+                updateNowPlayingUI();
+                loadAndPlayCurrentTrack();
+                document.getElementById('modalFeedbackMsg').textContent = 'डिफ़ॉल्ट 105 गानों की प्लेलिस्ट रीसेट हो गई!';
+            });
+        });
+    </script>
+</body>
+</html>
+```
